@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "307429684829",
+    "project_id": "the-quote-541f6",
+    "storage_bucket": "the-quote-541f6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307429684829:android:2da69b236e6cd0ea6d3fb4",
+        "android_client_info": {
+          "package_name": "com.example.the_quote"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAe2Q0xCW5pOir9NaZtSrfmKqemq_pbUSY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
