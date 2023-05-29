@@ -11,10 +11,6 @@ scripts:
       melos exec -- flutter pub get
     description: Run 'packages get' in all packages.
 
-  check_versions:
-    run: |
-      melos exec -- ruby ../../scripts/check_dependencies/check.rb
-    description: Checks wheather all packages have same packages versions
 
   analyze:
     run: melos exec -- flutter analyze --no-fatal-infos --no-fatal-warnings
@@ -30,7 +26,7 @@ scripts:
 
   generate_l10n:
     run: |
-      melos exec -- flutter pub run easy_localization:generate -S assets/translations -O lib/core/l10n -f keys -o locale_keys.g.dart
+      melos exec -- flutter pub run easy_localization:generate -S assets/translations -O lib/src/core -f keys -o locale_keys.g.dart
     description: Generate translations keys in all packages.
     packageFilters:
       dependsOn:
