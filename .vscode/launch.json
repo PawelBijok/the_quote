@@ -6,20 +6,17 @@
   "configurations": [
     {
       "name": "The Quote",
-      "cwd": "packages/the_quote",
       "request": "launch",
       "type": "dart"
     },
     {
       "name": "The Quote (profile mode)",
-      "cwd": "packages/the_quote",
       "request": "launch",
       "type": "dart",
       "flutterMode": "profile"
     },
     {
       "name": "The Quote (release mode)",
-      "cwd": "packages/the_quote",
       "request": "launch",
       "type": "dart",
       "flutterMode": "release"

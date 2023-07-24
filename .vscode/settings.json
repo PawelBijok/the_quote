@@ -1,5 +1,8 @@
 {
   "dart.runPubGetOnPubspecChanges": "never",
   "dart.lineLength": 80,
-  "editor.rulers": [80]
+  "editor.rulers": [80],
+  "bloc.newBlocTemplate.type": "freezed",
+  "bloc.newCubitTemplate.type": "freezed",
+  "cSpell.words": ["Monstserrat"]
 }

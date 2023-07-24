@@ -1,6 +1,0 @@
-# melos_managed_dependency_overrides: the_quote_core_ui,the_quote_localization
-dependency_overrides:
-  the_quote_core_ui:
-    path: ../the_quote_core_ui
-  the_quote_localization:
-    path: ../the_quote_localization
