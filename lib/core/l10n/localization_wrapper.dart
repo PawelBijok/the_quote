@@ -12,7 +12,7 @@ class LocalizationWrapper extends StatelessWidget {
     return EasyLocalization(
       supportedLocales: SupportedLocales.all,
       useOnlyLangCode: true,
-      path: 'assets/translations/',
+      path: 'assets/translations',
       fallbackLocale: SupportedLocales.fallback,
       child: child,
     );

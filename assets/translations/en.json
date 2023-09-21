@@ -1,3 +1,24 @@
 {
-  "hi": "Hi there!"
+  "appName": "The Quote",
+  "appSlogan": "Your digital quote vault",
+  "continueWithEmail": "Continue with email",
+  "or": "OR",
+  "signInWithApple": "Sign in with Apple",
+  "signInWithGoogle": "Sign in with Google",
+  "invalidEmail": "Invalid email",
+  "thisFieldIsRequired": "This field is required",
+  "passwordTooShort": "Password is too short",
+  "fieldsNotEqual": "Fields not equal",
+  "emailAlreadyInUse": "This email address is already being used",
+  "invalidCredentials": "Invalid login credentials",
+  "somethingWentWrong": "Something went wrong, try again later",
+  "noInternetConnection": "No internet connection",
+  "email": "email",
+  "password": "password",
+  "confirmPassword": "confirm password",
+  "signIn": "Sign in",
+  "register": "Register",
+  "dontHaveAnAccount": "Don't have an account?",
+  "alreadyHaveAnAccount": "Already have an account?",
+  "forgotPassword": "Forgot password?"
 }

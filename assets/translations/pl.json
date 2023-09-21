@@ -1,3 +1,24 @@
 {
-  "hi": "Hejka naklejka!"
+  "appName": "The Quote",
+  "appSlogan": "Twój prywatny skarbiec cytatów",
+  "continueWithEmail": "Kontynuuj za pomocą email",
+  "or": "LUB",
+  "signInWithApple": "Zaloguj się z Apple",
+  "signInWithGoogle": "Zaloguj się z Google",
+  "invalidEmail": "Niepoprawny email",
+  "thisFieldIsRequired": "To pole jest wymagane",
+  "passwordTooShort": "Hasło jest zbyt krótkie",
+  "fieldsNotEqual": "Pola nie są jednakowe",
+  "emailAlreadyInUse": "Taki email jest już używamy",
+  "invalidCredentials": "Niepoprawne dane logowania",
+  "somethingWentWrong": "Coś poszło nie tak, spróbuj ponownie później",
+  "noInternetConnection": "Brak połączenia z internetem",
+  "email": "email",
+  "password": "hasło",
+  "confirmPassword": "powtórz hasło",
+  "signIn": "Zaloguj się",
+  "register": "Zarejestruj się",
+  "dontHaveAnAccount": "Nie masz jeszcze konta?",
+  "alreadyHaveAnAccount": "Masz już konto?",
+  "forgotPassword": "Zapomniałeś hasła?"
 }
