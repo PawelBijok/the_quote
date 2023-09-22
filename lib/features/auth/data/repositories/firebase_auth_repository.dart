@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:either_dart/either.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
-import 'package:the_quote/features/auth/data/repositories/auth_repository.dart';
 import 'package:the_quote/features/auth/domain/failures/auth_failure.dart';
 import 'package:the_quote/features/auth/domain/models/user_model.dart';
+import 'package:the_quote/features/auth/domain/repositories/auth_repository.dart';
 
 @Injectable(as: AuthRepository)
 class FirebaseAuthRepository implements AuthRepository {
@@ -80,5 +80,28 @@ class FirebaseAuthRepository implements AuthRepository {
     } catch (e, st) {
       return Left(UnknownFailure(e.toString(), st));
     }
+  }
+
+  @override
+  Future<Either<AuthFailure, UserModel>> signInWithGoogle() {
+    // TODO: implement signInWithGoogle
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<AuthFailure, UserModel>> signInWithApple() {
+    // TODO: implement signInWithApple
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<UserModel?> autoLogin() async {
+    final user = firebaseAuth.currentUser;
+    if (user == null || user.email == null) {
+      return null;
+    }
+
+    final userModel = UserModel(user.email!);
+    return userModel;
   }
 }

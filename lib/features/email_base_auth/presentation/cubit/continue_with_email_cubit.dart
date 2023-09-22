@@ -4,8 +4,8 @@ import 'package:injectable/injectable.dart';
 import 'package:the_quote/core/validators/text/text_validation_error.dart';
 import 'package:the_quote/core/validators/text/text_validation_option.dart';
 import 'package:the_quote/core/validators/text/text_validators.dart';
-import 'package:the_quote/features/auth/data/repositories/auth_repository.dart';
 import 'package:the_quote/features/auth/domain/failures/auth_failure.dart';
+import 'package:the_quote/features/auth/domain/repositories/auth_repository.dart';
 import 'package:the_quote/features/email_base_auth/presentation/errors/continue_with_email_error.dart';
 
 part 'continue_with_email_cubit.freezed.dart';

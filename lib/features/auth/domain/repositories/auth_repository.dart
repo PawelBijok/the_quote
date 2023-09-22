@@ -12,4 +12,7 @@ abstract interface class AuthRepository {
     required String email,
     required String password,
   });
+  Future<Either<AuthFailure, UserModel>> signInWithGoogle();
+  Future<Either<AuthFailure, UserModel>> signInWithApple();
+  Future<UserModel?> autoLogin();
 }
