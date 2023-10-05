@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:the_quote/core/extensions/extensions.dart';
 import 'package:the_quote/core/images/svg_images.dart';
 import 'package:the_quote/core/l10n/locale_keys.g.dart';
-import 'package:the_quote/core/widgets/layout/spacers.dart';
+import 'package:the_quote/shared/presentation/widgets/layout/spacers.dart';
 
 class SignInWithAppleButton extends StatelessWidget {
   const SignInWithAppleButton({required this.onPressed, super.key});
