@@ -14,60 +14,58 @@ class QuoteListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListTile(
-        contentPadding: const EdgeInsets.only(bottom: 5),
-        title: Text(
-          '„${quote.content}”',
-          style: context.textTheme.bodyLarge?.copyWith(
-            fontStyle: FontStyle.italic,
-            fontFamily: Fonts.sourceSerifPro,
+    return ListTile(
+      contentPadding: const EdgeInsets.only(bottom: 5),
+      title: Text(
+        '„${quote.content}”',
+        style: context.textTheme.bodyLarge?.copyWith(
+          fontStyle: FontStyle.italic,
+          fontFamily: Fonts.sourceSerifPro,
+        ),
+      ),
+      subtitle: Text(
+        DateFormat.yMMMd().format(quote.createdAt),
+        style: context.textTheme.labelSmall,
+      ),
+      trailing: MenuAnchor(
+        alignmentOffset: Offset(-50, 0),
+        builder: (BuildContext context, MenuController controller, Widget? child) {
+          return IconButton(
+            onPressed: () {
+              if (controller.isOpen) {
+                controller.close();
+              } else {
+                controller.open();
+              }
+            },
+            icon: const Icon(Icons.more_horiz),
+            tooltip: 'Show menu',
+          );
+        },
+        menuChildren: [
+          MenuItemButton(
+            onPressed: () => context.read<CollectionCubit>().deleteQuote(quote.id),
+            child: const Row(children: [
+              Icon(
+                Icons.delete,
+                size: 20,
+              ),
+              Spacers.s,
+              Text('Usuń'),
+            ]),
           ),
-        ),
-        subtitle: Text(
-          DateFormat.yMMMd().format(quote.createdAt),
-          style: context.textTheme.labelSmall,
-        ),
-        trailing: MenuAnchor(
-          alignmentOffset: Offset(-50, 0),
-          builder: (BuildContext context, MenuController controller, Widget? child) {
-            return IconButton(
-              onPressed: () {
-                if (controller.isOpen) {
-                  controller.close();
-                } else {
-                  controller.open();
-                }
-              },
-              icon: const Icon(Icons.more_horiz),
-              tooltip: 'Show menu',
-            );
-          },
-          menuChildren: [
-            MenuItemButton(
-              onPressed: () => context.read<CollectionCubit>().deleteQuote(quote.id),
-              child: const Row(children: [
-                Icon(
-                  Icons.delete,
-                  size: 20,
-                ),
-                Spacers.s,
-                Text('Usuń'),
-              ]),
-            ),
-            MenuItemButton(
-              onPressed: () {},
-              child: const Row(children: [
-                Icon(
-                  Icons.edit,
-                  size: 20,
-                ),
-                Spacers.s,
-                Text('Edytuj'),
-              ]),
-            )
-          ],
-        ),
+          MenuItemButton(
+            onPressed: () {},
+            child: const Row(children: [
+              Icon(
+                Icons.edit,
+                size: 20,
+              ),
+              Spacers.s,
+              Text('Edytuj'),
+            ]),
+          )
+        ],
       ),
     );
   }
