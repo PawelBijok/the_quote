@@ -8,10 +8,11 @@ analyzer:
     - "**/*.freezed.dart"
     - "**/*.config.dart"
     - "**/l10n.dart"
-
+  language:
+    strict-raw-types: false
 
 linter:
   rules:
     public_member_api_docs: false
-
-
+    lines_longer_than_80_chars: false
+    

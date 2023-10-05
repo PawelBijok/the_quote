@@ -11,12 +11,12 @@ import 'package:the_quote/core/images/svg_images.dart';
 import 'package:the_quote/core/injectable/injectable.dart';
 import 'package:the_quote/core/l10n/locale_keys.g.dart';
 import 'package:the_quote/core/router/routes.dart';
-import 'package:the_quote/core/widgets/buttons/sign_in_with_apple_button.dart';
-import 'package:the_quote/core/widgets/buttons/sign_in_with_google_button.dart';
-import 'package:the_quote/core/widgets/common/divider_with_text.dart';
-import 'package:the_quote/core/widgets/layout/default_page_padding.dart';
-import 'package:the_quote/core/widgets/layout/spacers.dart';
 import 'package:the_quote/features/start/presentation/cubit/start_cubit.dart';
+import 'package:the_quote/shared/presentation/widgets/buttons/sign_in_with_apple_button.dart';
+import 'package:the_quote/shared/presentation/widgets/buttons/sign_in_with_google_button.dart';
+import 'package:the_quote/shared/presentation/widgets/common/divider_with_text.dart';
+import 'package:the_quote/shared/presentation/widgets/layout/default_page_padding.dart';
+import 'package:the_quote/shared/presentation/widgets/layout/spacers.dart';
 
 class StartPage extends StatelessWidget {
   const StartPage({super.key});
