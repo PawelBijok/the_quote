@@ -4,5 +4,5 @@ part of 'auth_cubit.dart';
 class AuthState with _$AuthState {
   const factory AuthState.initial() = _Initial;
   const factory AuthState.signedOut() = _SignedOut;
-  const factory AuthState.signedIn() = _SignedIn;
+  const factory AuthState.signedIn(UserModel user) = _SignedIn;
 }
