@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_quote/core/extensions/extensions.dart';
 import 'package:the_quote/core/fonts/fonts.dart';
+import 'package:the_quote/features/collection/presentation/pages/collection/cubit/collection_cubit.dart';
 import 'package:the_quote/features/quote/domain/models/quote_model.dart';
 import 'package:the_quote/shared/presentation/widgets/layout/spacers.dart';
 
@@ -43,7 +45,7 @@ class QuoteListTile extends StatelessWidget {
           },
           menuChildren: [
             MenuItemButton(
-              onPressed: () {},
+              onPressed: () => context.read<CollectionCubit>().deleteQuote(quote.id),
               child: const Row(children: [
                 Icon(
                   Icons.delete,

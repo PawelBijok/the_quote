@@ -7,4 +7,5 @@ abstract class QuoteRepository {
   Stream<List<QuoteModel>> quotesStream(String collectionId);
   Stream<QuoteModel> quoteStream(String collectionId, String id);
   Future<Either<Failure, void>> addNewQuote(String collection, QuoteModel quote);
+  Future<Either<Failure, void>> deleteQuote(String collectionId, String quoteId);
 }

@@ -20,8 +20,10 @@ class CollectionCubit extends Cubit<CollectionState> {
   final QuoteRepository quoteRepository;
 
   final List<StreamSubscription> subs = [];
+  late final String collectionId;
 
   Future<void> init(String collectionId, CollectionModel? preloadedCollection) async {
+    this.collectionId = collectionId;
     if (preloadedCollection != null) {
       emit(CollectionState.loaded(collection: preloadedCollection));
     }
@@ -35,6 +37,10 @@ class CollectionCubit extends Cubit<CollectionState> {
     );
     subs.add(sub);
     // subs.add(collectionSub);
+  }
+
+  Future<void> deleteQuote(String quoteId) async {
+    await quoteRepository.deleteQuote(collectionId, quoteId);
   }
 
   @override

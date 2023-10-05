@@ -48,4 +48,23 @@ class QuoteRepositoryImpl implements QuoteRepository {
   String? get uID {
     return firebaseAuth.currentUser?.uid;
   }
+
+  @override
+  Future<Either<Failure, void>> deleteQuote(String collectionId, String quoteId) async {
+    try {
+      final ref = firebaseFirestore
+          .collection('users')
+          .doc(uID)
+          .collection('collections')
+          .doc(collectionId)
+          .collection('quotes')
+          .doc(quoteId);
+
+      await ref.delete();
+
+      return const Right(null);
+    } catch (e, st) {
+      return Left(UnknownFailure(e.toString(), st));
+    }
+  }
 }
