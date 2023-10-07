@@ -47,6 +47,18 @@ class CollectionRepositoryImpl implements CollectionRepository {
         );
   }
 
+  @override
+  Future<Either<Failure, void>> editExistingCollection(CollectionModel collection) async {
+    try {
+      final collectionDoc = firebaseFirestore.collection('users').doc(uID).collection('collections').doc(collection.id);
+      await collectionDoc.update(collection.toJson());
+
+      return const Right(null);
+    } catch (e, st) {
+      return Left(UnknownFailure(e.toString(), st));
+    }
+  }
+
   String? get uID {
     return firebaseAuth.currentUser?.uid;
   }

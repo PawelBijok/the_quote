@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:rxdart/rxdart.dart' as rx;
+import 'package:rxdart/rxdart.dart';
 import 'package:the_quote/features/collection/domain/models/collection_model.dart';
 import 'package:the_quote/features/collection/domain/repositories/collection_repository.dart';
 import 'package:the_quote/features/quote/domain/models/quote_model.dart';
@@ -29,14 +29,18 @@ class CollectionCubit extends Cubit<CollectionState> {
     }
     final quotesStream = quoteRepository.quotesStream(collectionId);
     final collectionStream = collectionRepository.collectionStream(collectionId);
-    final sub = quotesStream.withLatestFrom(collectionStream, (t, s) => (t, s)).listen(
+    final sub = Rx.combineLatest2(
+      quotesStream,
+      collectionStream,
+      (q, c) => (q, c),
+    ).listen(
       (event) {
         final (quotes, collection) = event;
         emit(CollectionState.loaded(collection: collection, quotes: quotes));
       },
     );
+
     subs.add(sub);
-    // subs.add(collectionSub);
   }
 
   Future<void> deleteQuote(String quoteId) async {

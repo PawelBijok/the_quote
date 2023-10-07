@@ -4,7 +4,7 @@ import 'package:the_quote/core/injectable/injectable.dart';
 import 'package:the_quote/core/router/routes.dart';
 import 'package:the_quote/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:the_quote/features/collection/domain/models/collection_model.dart';
-import 'package:the_quote/features/collection/presentation/pages/add_new_collection/add_new_collection_page.dart';
+import 'package:the_quote/features/collection/presentation/pages/add_or_edit_collection/add_or_edit_collection_page.dart';
 import 'package:the_quote/features/collection/presentation/pages/collection/collection_page.dart';
 import 'package:the_quote/features/email_base_auth/presentation/pages/continue_with_email_page.dart';
 import 'package:the_quote/features/home/presentation/page/home_page.dart';
@@ -48,8 +48,13 @@ final router = GoRouter(
       builder: (context, state) => const HomePage(),
     ),
     GoRoute(
-      path: Routes.addNewCollection,
-      builder: (context, state) => const AddNewCollectionPage(),
+      path: Routes.addOrEditCollection,
+      builder: (context, state) {
+        final collection = state.extra is CollectionModel ? state.extra! as CollectionModel : null;
+        return AddOrEditCollectionPage(
+          collectionToEdit: collection,
+        );
+      },
     ),
     GoRoute(
       path: '${Routes.collection}/:id',

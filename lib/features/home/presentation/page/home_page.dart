@@ -56,7 +56,7 @@ class HomePage extends StatelessWidget {
                   Spacers.xxl,
                   HeaderWithButtonAndDivider(
                     title: 'Kolekcje',
-                    onPressed: () => context.push(Routes.addNewCollection),
+                    onPressed: () => context.push(Routes.addOrEditCollection),
                     icon: Icons.add,
                   ),
                   state.maybeWhen(

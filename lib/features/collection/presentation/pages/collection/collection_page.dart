@@ -28,12 +28,18 @@ class CollectionPage extends StatelessWidget {
               title: state.mapOrNull(
                 loaded: (state) => Text(state.collection.title),
               ),
-              actions: [
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.edit),
-                )
-              ],
+              actions: state.mapOrNull(
+                loaded: (state) {
+                  return [
+                    IconButton(
+                      onPressed: () {
+                        context.push(Routes.addOrEditCollection, extra: state.collection);
+                      },
+                      icon: const Icon(Icons.edit),
+                    )
+                  ];
+                },
+              ),
             ),
             body: state.maybeMap(
               orElse: () => const Center(
@@ -89,7 +95,7 @@ class CollectionPage extends StatelessWidget {
                       if (hasQuotes) ...[
                         HeaderWithButtonAndDivider(
                           title: 'Cytaty',
-                          onPressed: () => context.push(Routes.addNewCollection),
+                          onPressed: () {},
                           icon: Icons.add,
                         ),
                         ...state.quotes.map(

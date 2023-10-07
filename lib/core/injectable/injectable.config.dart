@@ -24,7 +24,7 @@ import '../../features/collection/domain/data/repositories/collection_repository
     as _i16;
 import '../../features/collection/domain/repositories/collection_repository.dart'
     as _i15;
-import '../../features/collection/presentation/pages/add_new_collection/cubit/add_new_collection_cubit.dart'
+import '../../features/collection/presentation/pages/add_or_edit_collection/cubit/add_or_edit_collection_cubit.dart'
     as _i20;
 import '../../features/collection/presentation/pages/collection/cubit/collection_cubit.dart'
     as _i22;
@@ -92,8 +92,8 @@ extension GetItInjectableX on _i1.GetIt {
               gh<_i6.ImagePicker>(),
               gh<_i9.RemoteStorageRepository>(),
             ));
-    gh.factory<_i20.AddNewCollectionCubit>(
-        () => _i20.AddNewCollectionCubit(gh<_i15.CollectionRepository>()));
+    gh.factory<_i20.AddOrEditCollectionCubit>(
+        () => _i20.AddOrEditCollectionCubit(gh<_i15.CollectionRepository>()));
     gh.lazySingleton<_i21.AuthCubit>(
         () => _i21.AuthCubit(gh<_i13.AuthRepository>()));
     gh.factory<_i22.CollectionCubit>(() => _i22.CollectionCubit(

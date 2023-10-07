@@ -6,4 +6,5 @@ abstract class CollectionRepository {
   Stream<List<CollectionModel>> collectionsStream();
   Stream<CollectionModel> collectionStream(String id);
   Future<Either<Failure, void>> addNewCollection(CollectionModel collection);
+  Future<Either<Failure, void>> editExistingCollection(CollectionModel collection);
 }
