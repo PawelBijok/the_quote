@@ -1,7 +1,6 @@
 import 'package:either_dart/either.dart';
 import 'package:the_quote/features/quote/domain/models/quote_model.dart';
-
-import '../../../../shared/domain/failures/failure.dart';
+import 'package:the_quote/shared/domain/failures/failure.dart';
 
 abstract class QuoteRepository {
   Stream<List<QuoteModel>> quotesStream(String collectionId);

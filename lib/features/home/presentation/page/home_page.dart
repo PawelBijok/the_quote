@@ -64,12 +64,14 @@ class HomePage extends StatelessWidget {
                     loaded: (collections) {
                       return Column(
                         children: collections
-                            .map((c) => Column(
-                                  children: [
-                                    CollectionListTile(collection: c),
-                                    Spacers.l,
-                                  ],
-                                ))
+                            .map(
+                              (c) => Column(
+                                children: [
+                                  CollectionListTile(collection: c),
+                                  Spacers.l,
+                                ],
+                              ),
+                            )
                             .toList(),
                       );
                     },

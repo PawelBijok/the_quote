@@ -1,6 +1,6 @@
 import 'package:uuid/uuid.dart';
 
 String get randomId {
-  final uuid = const Uuid();
+  const uuid = Uuid();
   return uuid.v1();
 }

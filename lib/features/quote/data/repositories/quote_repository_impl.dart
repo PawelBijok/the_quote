@@ -15,13 +15,13 @@ class QuoteRepositoryImpl implements QuoteRepository {
 
   @override
   Future<Either<Failure, void>> addNewQuote(String collection, QuoteModel quote) {
-    // TODO: implement addNewQuote
+    // TODO(pafello): implement addNewQuote
     throw UnimplementedError();
   }
 
   @override
   Stream<QuoteModel> quoteStream(String collectionId, String id) {
-    // TODO: implement quoteStream
+    // TODO(pafello): implement quoteStream
     throw UnimplementedError();
   }
 

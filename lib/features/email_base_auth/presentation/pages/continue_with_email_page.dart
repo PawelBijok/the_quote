@@ -40,7 +40,7 @@ class ContinueWithEmailPage extends StatelessWidget {
 }
 
 class _Body extends StatelessWidget {
-  const _Body({super.key});
+  const _Body();
 
   @override
   Widget build(BuildContext context) {
@@ -167,7 +167,6 @@ class _AnimatedGap extends StatelessWidget {
     required this.isCollapsed,
     required this.sizeExpanded,
     this.sizeCollapsed = 1,
-    super.key,
   });
 
   final bool isCollapsed;
@@ -186,7 +185,7 @@ class _AnimatedGap extends StatelessWidget {
 }
 
 class _BottomBar extends StatelessWidget {
-  const _BottomBar({super.key});
+  const _BottomBar();
 
   @override
   Widget build(BuildContext context) {

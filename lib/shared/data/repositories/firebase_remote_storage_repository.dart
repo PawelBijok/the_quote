@@ -18,7 +18,7 @@ class FirebaseRemoteStorageRepository implements RemoteStorageRepository {
     required String filename,
   }) async {
     try {
-      final ref = await firebaseStorage.ref('/uploads/${filename}');
+      final ref = firebaseStorage.ref('/uploads/$filename');
       final uploadTask = ref.putData(file);
       final downloadUrl = await (await uploadTask.whenComplete(() => null)).ref.getDownloadURL();
       return Right(downloadUrl);

@@ -12,8 +12,7 @@ class TextValidator {
       final NotEmptyTextValidation o => _NotEmptyValidator().validate(o.text),
       final EmailTextValidation o => _EmailValidator().validate(o.text),
       final PasswordTextValidation o => _PasswordValidator().validate(o.text),
-      final EqualityTextValidation o =>
-        _EqualityValidator().validate(o.text, o.compareTo),
+      final EqualityTextValidation o => _EqualityValidator().validate(o.text, o.compareTo),
     };
   }
 }
@@ -34,7 +33,6 @@ class _EmailValidator {
     }
     final regex = RegExp(
       r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+',
-      multiLine: false,
     );
 
     if (!regex.hasMatch(text)) {

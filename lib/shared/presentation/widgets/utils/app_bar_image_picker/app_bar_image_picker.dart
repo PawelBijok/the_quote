@@ -3,11 +3,9 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_quote/core/extensions/extensions.dart';
 import 'package:the_quote/core/injectable/injectable.dart';
+import 'package:the_quote/shared/application/image_picker_and_uploader/image_picker_and_uploader_cubit.dart';
 import 'package:the_quote/shared/presentation/widgets/layout/spacers.dart';
-
 import 'package:transparent_image/transparent_image.dart';
-
-import '../../../../application/image_picker_and_uploader/image_picker_and_uploader_cubit.dart';
 
 class AppBarImagePicker extends StatelessWidget {
   const AppBarImagePicker({

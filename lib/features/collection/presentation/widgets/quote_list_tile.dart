@@ -28,7 +28,7 @@ class QuoteListTile extends StatelessWidget {
         style: context.textTheme.labelSmall,
       ),
       trailing: MenuAnchor(
-        alignmentOffset: Offset(-50, 0),
+        alignmentOffset: const Offset(-50, 0),
         builder: (BuildContext context, MenuController controller, Widget? child) {
           return IconButton(
             onPressed: () {
@@ -45,25 +45,29 @@ class QuoteListTile extends StatelessWidget {
         menuChildren: [
           MenuItemButton(
             onPressed: () => context.read<CollectionCubit>().deleteQuote(quote.id),
-            child: const Row(children: [
-              Icon(
-                Icons.delete,
-                size: 20,
-              ),
-              Spacers.s,
-              Text('Usuń'),
-            ]),
+            child: const Row(
+              children: [
+                Icon(
+                  Icons.delete,
+                  size: 20,
+                ),
+                Spacers.s,
+                Text('Usuń'),
+              ],
+            ),
           ),
           MenuItemButton(
             onPressed: () {},
-            child: const Row(children: [
-              Icon(
-                Icons.edit,
-                size: 20,
-              ),
-              Spacers.s,
-              Text('Edytuj'),
-            ]),
+            child: const Row(
+              children: [
+                Icon(
+                  Icons.edit,
+                  size: 20,
+                ),
+                Spacers.s,
+                Text('Edytuj'),
+              ],
+            ),
           )
         ],
       ),

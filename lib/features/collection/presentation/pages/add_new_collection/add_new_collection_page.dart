@@ -18,9 +18,11 @@ class AddNewCollectionPage extends StatelessWidget {
         builder: (context) {
           return BlocListener<AddNewCollectionCubit, AddNewCollectionState>(
             listener: (context, state) {
-              state.mapOrNull(success: (_) {
-                context.pop();
-              });
+              state.mapOrNull(
+                success: (_) {
+                  context.pop();
+                },
+              );
             },
             child: Scaffold(
               body: CustomScrollView(
@@ -50,38 +52,40 @@ class AddNewCollectionPage extends StatelessWidget {
 }
 
 class _Body extends StatelessWidget {
-  const _Body({super.key});
+  const _Body();
 
   @override
   Widget build(BuildContext context) {
     return DefaultPagePadding(
-      child: Column(children: [
-        TextFormField(
-          decoration: const InputDecoration(
-            label: Text('Collection title'),
+      child: Column(
+        children: [
+          TextFormField(
+            decoration: const InputDecoration(
+              label: Text('Collection title'),
+            ),
+            onChanged: context.read<AddNewCollectionCubit>().onTitleChanged,
           ),
-          onChanged: context.read<AddNewCollectionCubit>().onTitleChanged,
-        ),
-        TextFormField(
-          decoration: const InputDecoration(
-            label: Text('Collection description'),
+          TextFormField(
+            decoration: const InputDecoration(
+              label: Text('Collection description'),
+            ),
+            onChanged: context.read<AddNewCollectionCubit>().onDescriptionChanged,
           ),
-          onChanged: context.read<AddNewCollectionCubit>().onDescriptionChanged,
-        ),
-        Spacers.xxl,
-        SizedBox(
-          child: ElevatedButton(
-            onPressed: context.read<AddNewCollectionCubit>().onSave,
-            child: const Text('Save'),
+          Spacers.xxl,
+          SizedBox(
+            child: ElevatedButton(
+              onPressed: context.read<AddNewCollectionCubit>().onSave,
+              child: const Text('Save'),
+            ),
           ),
-        ),
-        OutlinedButton(
-          onPressed: () {
-            context.pop();
-          },
-          child: const Text('Cancel'),
-        ),
-      ]),
+          OutlinedButton(
+            onPressed: () {
+              context.pop();
+            },
+            child: const Text('Cancel'),
+          ),
+        ],
+      ),
     );
   }
 }

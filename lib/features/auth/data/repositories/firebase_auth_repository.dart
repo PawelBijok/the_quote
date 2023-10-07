@@ -84,13 +84,13 @@ class FirebaseAuthRepository implements AuthRepository {
 
   @override
   Future<Either<AuthFailure, UserModel>> signInWithGoogle() {
-    // TODO: implement signInWithGoogle
+    // TODO(pafello): implement signInWithGoogle
     throw UnimplementedError();
   }
 
   @override
   Future<Either<AuthFailure, UserModel>> signInWithApple() {
-    // TODO: implement signInWithApple
+    // TODO(pafello): implement signInWithApple
     throw UnimplementedError();
   }
 

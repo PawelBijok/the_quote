@@ -54,7 +54,7 @@ final router = GoRouter(
     GoRoute(
       path: '${Routes.collection}/:id',
       builder: (context, state) {
-        final preloadedCollection = state.extra is CollectionModel ? state.extra as CollectionModel : null;
+        final preloadedCollection = state.extra is CollectionModel ? state.extra! as CollectionModel : null;
         return CollectionPage(
           id: state.pathParameters['id']!,
           preloadedCollection: preloadedCollection,

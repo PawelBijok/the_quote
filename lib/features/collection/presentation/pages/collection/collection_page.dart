@@ -50,7 +50,6 @@ class CollectionPage extends StatelessWidget {
                           children: [
                             Flexible(
                               child: Container(),
-                              flex: 1,
                             ),
                             Flexible(
                               flex: 2,
@@ -68,14 +67,13 @@ class CollectionPage extends StatelessWidget {
                             ),
                             Flexible(
                               child: Container(),
-                              flex: 1,
                             ),
                           ],
                         ),
                       Spacers.xl,
                       if (!hasQuotes) ...[
                         Spacers.xxl,
-                        Divider(),
+                        const Divider(),
                         Spacers.xxl,
                         const Text(
                           'Nie masz jeszcze żadnych cytatów',
@@ -84,8 +82,8 @@ class CollectionPage extends StatelessWidget {
                         Spacers.m,
                         ElevatedButton.icon(
                           onPressed: () {},
-                          label: Text('Dodaj pierwszy cytat'),
-                          icon: Icon(Icons.add),
+                          label: const Text('Dodaj pierwszy cytat'),
+                          icon: const Icon(Icons.add),
                         )
                       ],
                       if (hasQuotes) ...[

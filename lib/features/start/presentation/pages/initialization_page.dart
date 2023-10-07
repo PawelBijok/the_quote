@@ -9,7 +9,7 @@ class InitializationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
-        return Scaffold(
+        return const Scaffold(
           body: Center(
             child: CircularProgressIndicator(),
           ),

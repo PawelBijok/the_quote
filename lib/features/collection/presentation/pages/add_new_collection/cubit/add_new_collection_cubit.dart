@@ -9,7 +9,7 @@ part 'add_new_collection_state.dart';
 
 @injectable
 class AddNewCollectionCubit extends Cubit<AddNewCollectionState> {
-  AddNewCollectionCubit(this.collectionRepository) : super(AddNewCollectionState.initial());
+  AddNewCollectionCubit(this.collectionRepository) : super(const AddNewCollectionState.initial());
 
   final CollectionRepository collectionRepository;
 
@@ -50,10 +50,9 @@ class AddNewCollectionCubit extends Cubit<AddNewCollectionState> {
           ),
         );
         if (failureOrNull.isLeft) {
-          print('fail: ${failureOrNull.left.error}');
           return emit(state.copyWith(isLoading: false));
         }
-        print('mamy to');
+
         emit(const AddNewCollectionState.success());
       },
     );

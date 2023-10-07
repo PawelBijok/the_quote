@@ -19,14 +19,13 @@ class CollectionListTile extends StatelessWidget {
       borderRadius: BorderRadius.circular(15),
       splashColor: context.colorScheme.secondary.withOpacity(0.15),
       onTap: () {
-        print('${Routes.collection}/${collection.id}');
         context.push('${Routes.collection}/${collection.id}', extra: collection);
       },
       child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              context.colorScheme.primaryContainer.withOpacity(0.2).darken(10),
+              context.colorScheme.primaryContainer.withOpacity(0.2).darken(),
               context.colorScheme.primaryContainer.withOpacity(0.2)
             ],
           ),
