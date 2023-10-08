@@ -72,7 +72,9 @@ class _Body extends StatelessWidget {
     return BlocBuilder<AddOrEditCollectionCubit, AddOrEditCollectionState>(
       builder: (context, state) {
         final (title, description) = state.maybeMap(
-            initial: (state) => (state.collectionTitle, state.collectionDescription), orElse: () => (null, null));
+          initial: (state) => (state.collectionTitle, state.collectionDescription),
+          orElse: () => (null, null),
+        );
         return DefaultPagePadding(
           child: Column(
             children: [
