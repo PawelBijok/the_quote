@@ -52,7 +52,7 @@ class _Body extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.error!.toLocaleKey.tr())));
         }
         if (state.success) {
-          context.go(Routes.home);
+          context.go(Routes.main);
         }
       },
       builder: (context, state) {

@@ -7,7 +7,7 @@ import 'package:the_quote/features/collection/domain/models/collection_model.dar
 import 'package:the_quote/features/collection/presentation/pages/add_or_edit_collection/add_or_edit_collection_page.dart';
 import 'package:the_quote/features/collection/presentation/pages/collection/collection_page.dart';
 import 'package:the_quote/features/email_base_auth/presentation/pages/continue_with_email_page.dart';
-import 'package:the_quote/features/home/presentation/page/home_page.dart';
+import 'package:the_quote/features/main_screen/presentation/main_page.dart';
 import 'package:the_quote/features/start/presentation/pages/initialization_page.dart';
 import 'package:the_quote/features/start/presentation/pages/start_page.dart';
 
@@ -21,7 +21,7 @@ final router = GoRouter(
     return authState.mapOrNull(
       signedIn: (_) {
         if (!Routes.authenticatedPaths.containsPart(location)) {
-          return Routes.home;
+          return Routes.main;
         }
         return null;
       },
@@ -44,8 +44,8 @@ final router = GoRouter(
       builder: (context, state) => const ContinueWithEmailPage(),
     ),
     GoRoute(
-      path: Routes.home,
-      builder: (context, state) => const HomePage(),
+      path: Routes.main,
+      builder: (context, state) => const MainPage(),
     ),
     GoRoute(
       path: Routes.addOrEditCollection,

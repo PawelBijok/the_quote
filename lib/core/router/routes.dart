@@ -2,10 +2,10 @@ abstract class Routes {
   static const root = '/root';
   static const start = '/start';
   static const continueWithEmail = '/continue-with-email';
-  static const home = '/home';
+  static const main = '/main';
   static const addOrEditCollection = '/addNewCollection';
   static const collection = '/collection';
 
   static const unauthenticatedPaths = [root, start];
-  static const authenticatedPaths = [home, addOrEditCollection, collection];
+  static const authenticatedPaths = [main, addOrEditCollection, collection];
 }

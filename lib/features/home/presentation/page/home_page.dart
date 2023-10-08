@@ -79,30 +79,6 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-
-            bottomNavigationBar: NavigationBar(
-              destinations: const [
-                NavigationDestination(
-                  icon: Icon(Icons.home),
-                  label: 'Home',
-                ),
-                NavigationDestination(
-                  icon: Icon(Icons.search),
-                  label: 'Search',
-                ),
-                NavigationDestination(
-                  icon: Icon(Icons.settings),
-                  label: 'Settings',
-                ),
-              ],
-            ),
-            // bottomNavigationBar: BottomNavigationBar(
-            //   items: [
-            //     BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            //     BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
-            //     BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
-            //   ],
-            // ),
           );
         },
       ),
