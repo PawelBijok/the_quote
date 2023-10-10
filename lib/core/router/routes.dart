@@ -5,7 +5,8 @@ abstract class Routes {
   static const main = '/main';
   static const addOrEditCollection = '/addNewCollection';
   static const collection = '/collection';
+  static const addOrEditQuote = '/addOrEditQuote';
 
   static const unauthenticatedPaths = [root, start];
-  static const authenticatedPaths = [main, addOrEditCollection, collection];
+  static const authenticatedPaths = [main, addOrEditCollection, collection, addOrEditQuote];
 }

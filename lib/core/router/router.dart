@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:the_quote/core/extensions/list_extensions.dart';
 import 'package:the_quote/core/injectable/injectable.dart';
+import 'package:the_quote/core/router/dtos/add_or_edit_quote_route_dto.dart';
 import 'package:the_quote/core/router/routes.dart';
 import 'package:the_quote/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:the_quote/features/collection/domain/models/collection_model.dart';
@@ -8,6 +9,7 @@ import 'package:the_quote/features/collection/presentation/pages/add_or_edit_col
 import 'package:the_quote/features/collection/presentation/pages/collection/collection_page.dart';
 import 'package:the_quote/features/email_base_auth/presentation/pages/continue_with_email_page.dart';
 import 'package:the_quote/features/main_screen/presentation/main_page.dart';
+import 'package:the_quote/features/quote/presentation/add_or_edit_quote_page.dart';
 import 'package:the_quote/features/start/presentation/pages/initialization_page.dart';
 import 'package:the_quote/features/start/presentation/pages/start_page.dart';
 
@@ -63,6 +65,19 @@ final router = GoRouter(
         return CollectionPage(
           id: state.pathParameters['id']!,
           preloadedCollection: preloadedCollection,
+        );
+      },
+    ),
+    GoRoute(
+      path: Routes.addOrEditQuote,
+      builder: (context, state) {
+        final dto = state.extra is AddOrEditQuoteRouteDto ? state.extra! as AddOrEditQuoteRouteDto : null;
+        if (dto == null) {
+          throw Exception('No dto provided');
+        }
+        return AddOrEditQuotePage(
+          collectionId: dto.collectionId,
+          quoteToEdit: dto.quoteToEdit,
         );
       },
     ),

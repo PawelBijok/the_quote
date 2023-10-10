@@ -1,16 +1,20 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:the_quote/core/extensions/extensions.dart';
 import 'package:the_quote/core/fonts/fonts.dart';
+import 'package:the_quote/core/router/dtos/add_or_edit_quote_route_dto.dart';
+import 'package:the_quote/core/router/routes.dart';
 import 'package:the_quote/features/collection/presentation/pages/collection/cubit/collection_cubit.dart';
 import 'package:the_quote/features/quote/domain/models/quote_model.dart';
 import 'package:the_quote/shared/presentation/widgets/layout/spacers.dart';
 
 class QuoteListTile extends StatelessWidget {
-  const QuoteListTile({required this.quote, super.key});
+  const QuoteListTile({required this.quote, required this.collectionId, super.key});
 
   final QuoteModel quote;
+  final String collectionId;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +61,15 @@ class QuoteListTile extends StatelessWidget {
             ),
           ),
           MenuItemButton(
-            onPressed: () {},
+            onPressed: () {
+              context.push(
+                Routes.addOrEditQuote,
+                extra: AddOrEditQuoteRouteDto(
+                  collectionId: collectionId,
+                  quoteToEdit: quote,
+                ),
+              );
+            },
             child: const Row(
               children: [
                 Icon(

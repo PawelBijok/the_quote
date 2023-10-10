@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_quote/core/injectable/injectable.dart';
+import 'package:the_quote/core/router/dtos/add_or_edit_quote_route_dto.dart';
 import 'package:the_quote/core/router/routes.dart';
 import 'package:the_quote/features/collection/domain/models/collection_model.dart';
 import 'package:the_quote/features/collection/presentation/pages/collection/cubit/collection_cubit.dart';
@@ -87,7 +88,9 @@ class CollectionPage extends StatelessWidget {
                         ),
                         Spacers.m,
                         ElevatedButton.icon(
-                          onPressed: () {},
+                          onPressed: () {
+                            context.push(Routes.addOrEditQuote, extra: AddOrEditQuoteRouteDto(collectionId: id));
+                          },
                           label: const Text('Dodaj pierwszy cytat'),
                           icon: const Icon(Icons.add),
                         )
@@ -95,11 +98,16 @@ class CollectionPage extends StatelessWidget {
                       if (hasQuotes) ...[
                         HeaderWithButtonAndDivider(
                           title: 'Cytaty',
-                          onPressed: () {},
+                          onPressed: () {
+                            context.push(Routes.addOrEditQuote, extra: AddOrEditQuoteRouteDto(collectionId: id));
+                          },
                           icon: Icons.add,
                         ),
                         ...state.quotes.map(
-                          (quote) => QuoteListTile(quote: quote),
+                          (quote) => QuoteListTile(
+                            quote: quote,
+                            collectionId: id,
+                          ),
                         ),
                       ],
                     ],
