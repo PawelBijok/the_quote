@@ -9,14 +9,14 @@ part 'add_or_edit_quote_state.dart';
 
 @injectable
 class AddOrEditQuoteCubit extends Cubit<AddOrEditQuoteState> {
-  AddOrEditQuoteCubit(this.quoteRepository) : super(const AddOrEditQuoteState.initial());
+  AddOrEditQuoteCubit(this.quoteRepository) : super(const AddOrEditQuoteState());
 
   final QuoteRepository quoteRepository;
 
   Future<void> init({required String collectionId, QuoteModel? quoteToEdit}) async {
     if (quoteToEdit != null) {
       return emit(
-        AddOrEditQuoteState.initial(
+        AddOrEditQuoteState(
           collectionId: collectionId,
           quoteId: quoteToEdit.id,
           content: quoteToEdit.content,
@@ -31,14 +31,9 @@ class AddOrEditQuoteCubit extends Cubit<AddOrEditQuoteState> {
     if (content == null) {
       return;
     }
-    state.mapOrNull(
-      initial: (state) {
-        emit(state.copyWith(content: content));
-      },
-    );
+
+    emit(state.copyWith(content: content));
   }
 
-  void save() {
-    state.mapOrNull(initial: (state) {});
-  }
+  void save() {}
 }
