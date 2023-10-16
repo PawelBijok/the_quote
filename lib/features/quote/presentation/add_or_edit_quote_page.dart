@@ -53,7 +53,7 @@ class AddOrEditQuotePage extends StatelessWidget {
                       // color: context.colorScheme.primary,
                       borderRadius: BorderRadius.circular(10),
                       border: Border.fromBorderSide(
-                        BorderSide(color: context.colorScheme.primary),
+                        BorderSide(color: context.colorScheme.onSurface),
                       ),
                     ),
                     // height: 200,
@@ -91,7 +91,18 @@ class AddOrEditQuotePage extends StatelessWidget {
                         ],
                       ),
                     ),
-                  )
+                  ),
+                  Spacers.xxl,
+                  Container(
+                    width: double.infinity,
+                    child: Text(
+                      'Tags',
+                      textAlign: TextAlign.left,
+                      style: context.textTheme.headlineSmall,
+                    ),
+                  ),
+                  //TODO
+                  ListView()
                 ],
               ),
             ),
