@@ -120,7 +120,9 @@ class _Body extends StatelessWidget {
                           Align(
                             alignment: Alignment.bottomRight,
                             child: TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                context.push(Routes.resetPassword);
+                              },
                               child: Text(LocaleKeys.forgotPassword.tr()),
                             ),
                           ),

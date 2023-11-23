@@ -10,6 +10,7 @@ import 'package:the_quote/features/collection/presentation/pages/collection/coll
 import 'package:the_quote/features/email_base_auth/presentation/pages/continue_with_email_page.dart';
 import 'package:the_quote/features/main_screen/presentation/main_page.dart';
 import 'package:the_quote/features/quote/presentation/add_or_edit_quote_page.dart';
+import 'package:the_quote/features/reset_password/presentation/page/reset_password_page.dart';
 import 'package:the_quote/features/start/presentation/pages/initialization_page.dart';
 import 'package:the_quote/features/start/presentation/pages/start_page.dart';
 
@@ -28,7 +29,7 @@ final router = GoRouter(
         return null;
       },
       signedOut: (_) {
-        if (!Routes.unauthenticatedPaths.containsPart(location)) {
+        if (!Routes.unauthenticatedPaths.contains(location)) {
           return Routes.start;
         }
         return null;
@@ -44,6 +45,10 @@ final router = GoRouter(
     GoRoute(
       path: Routes.continueWithEmail,
       builder: (context, state) => const ContinueWithEmailPage(),
+    ),
+    GoRoute(
+      path: Routes.resetPassword,
+      builder: (context, state) => const ResetPasswordPage(),
     ),
     GoRoute(
       path: Routes.main,

@@ -36,7 +36,7 @@ class _EmailValidator {
     );
 
     if (!regex.hasMatch(text)) {
-      return TextValidationError.passwordTooShort;
+      return TextValidationError.invalidEmailFormat;
     }
 
     return null;

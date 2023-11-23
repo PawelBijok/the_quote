@@ -15,4 +15,7 @@ abstract interface class AuthRepository {
   Future<Either<AuthFailure, UserModel>> signInWithGoogle();
   Future<Either<AuthFailure, UserModel>> signInWithApple();
   Future<UserModel?> autoLogin();
+  Future<Either<AuthFailure, void>> resetPassword(
+    String email,
+  );
 }

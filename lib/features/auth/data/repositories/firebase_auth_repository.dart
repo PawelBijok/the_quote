@@ -104,4 +104,16 @@ class FirebaseAuthRepository implements AuthRepository {
     final userModel = UserModel(user.email!);
     return userModel;
   }
+
+  @override
+  Future<Either<AuthFailure, void>> resetPassword(String email) async {
+    try {
+      await firebaseAuth.sendPasswordResetEmail(email: email);
+      return const Right(null);
+    } on SocketException catch (e, st) {
+      return Left(NoInternetConnectionFailure(e.toString(), st));
+    } catch (e, st) {
+      return Left(UnknownFailure(e.toString(), st));
+    }
+  }
 }
