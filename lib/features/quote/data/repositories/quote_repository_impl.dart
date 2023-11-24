@@ -20,19 +20,18 @@ class QuoteRepositoryImpl implements QuoteRepository {
   }
 
   @override
-  Stream<QuoteModel> quoteStream(String collectionId, String id) {
+  Stream<QuoteModel> quoteStream(String id) {
     // TODO(pafello): implement quoteStream
     throw UnimplementedError();
   }
 
   @override
-  Stream<List<QuoteModel>> quotesStream(String collectionId) {
+  Stream<List<QuoteModel>> collectionQuotesStream(String collectionId) {
     return firebaseFirestore
         .collection('users')
         .doc(uID)
-        .collection('collections')
-        .doc(collectionId)
         .collection('quotes')
+        .where('collectionId', isEqualTo: collectionId)
         .snapshots()
         .map(
           (event) => event.docs.map(

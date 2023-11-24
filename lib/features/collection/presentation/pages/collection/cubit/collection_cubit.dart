@@ -27,7 +27,7 @@ class CollectionCubit extends Cubit<CollectionState> {
     if (preloadedCollection != null) {
       emit(CollectionState.loaded(collection: preloadedCollection));
     }
-    final quotesStream = quoteRepository.quotesStream(collectionId);
+    final quotesStream = quoteRepository.collectionQuotesStream(collectionId);
     final collectionStream = collectionRepository.collectionStream(collectionId);
     final sub = Rx.combineLatest2(
       quotesStream,
