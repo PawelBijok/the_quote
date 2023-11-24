@@ -59,13 +59,7 @@ class QuoteRepositoryImpl implements QuoteRepository {
   @override
   Future<Either<Failure, void>> deleteQuote(String collectionId, String quoteId) async {
     try {
-      final ref = firebaseFirestore
-          .collection('users')
-          .doc(uID)
-          .collection('collections')
-          .doc(collectionId)
-          .collection('quotes')
-          .doc(quoteId);
+      final ref = firebaseFirestore.collection('users').doc(uID).collection('quotes').doc(quoteId);
 
       await ref.delete();
 
