@@ -79,8 +79,10 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i10.FirebaseRemoteStorageRepository(gh<_i5.FirebaseStorage>()));
     gh.factory<_i11.StartCubit>(() => _i11.StartCubit());
     gh.factory<_i12.TextValidator>(() => _i12.TextValidator());
-    gh.factory<_i13.AddOrEditQuoteCubit>(
-        () => _i13.AddOrEditQuoteCubit(gh<_i7.QuoteRepository>()));
+    gh.factory<_i13.AddOrEditQuoteCubit>(() => _i13.AddOrEditQuoteCubit(
+          gh<_i7.QuoteRepository>(),
+          gh<_i12.TextValidator>(),
+        ));
     gh.factory<_i14.AuthRepository>(
         () => _i15.FirebaseAuthRepository(gh<_i3.FirebaseAuth>()));
     gh.factory<_i16.CollectionRepository>(() => _i17.CollectionRepositoryImpl(

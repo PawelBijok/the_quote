@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:the_quote/core/extensions/extensions.dart';
 import 'package:the_quote/core/fonts/fonts.dart';
 import 'package:the_quote/core/injectable/injectable.dart';
@@ -22,7 +23,23 @@ class AddOrEditQuotePage extends StatelessWidget {
           collectionId: collectionId,
           quoteToEdit: quoteToEdit,
         ),
-      child: BlocBuilder<AddOrEditQuoteCubit, AddOrEditQuoteState>(
+      child: BlocConsumer<AddOrEditQuoteCubit, AddOrEditQuoteState>(
+        listener: (context, state) {
+          if (state.status == AddOrEditQuoteStatus.success) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(state.isEditing ? 'Pomyślnie zapisano cytat' : 'Pomyślnie dodano nowy cytat do kolecji'),
+              ),
+            );
+            context.pop();
+          } else if (state.status == AddOrEditQuoteStatus.failure) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Coś poszło nie tak, spróbuj ponownie później'),
+              ),
+            );
+          }
+        },
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
@@ -76,8 +93,8 @@ class AddOrEditQuotePage extends StatelessWidget {
                                 child: Icon(Icons.image),
                               ),
                               FloatingActionButton(
-                                onPressed: () {},
                                 heroTag: null,
+                                onPressed: null,
                                 child: Icon(Icons.camera_alt),
                               ),
                             ],
@@ -93,16 +110,10 @@ class AddOrEditQuotePage extends StatelessWidget {
                     ),
                   ),
                   Spacers.xxl,
-                  Container(
-                    width: double.infinity,
-                    child: Text(
-                      'Tags',
-                      textAlign: TextAlign.left,
-                      style: context.textTheme.headlineSmall,
-                    ),
-                  ),
-                  //TODO
-                  // ListView()
+                  ElevatedButton(
+                    onPressed: context.read<AddOrEditQuoteCubit>().save,
+                    child: const Text('Zapisz'),
+                  )
                 ],
               ),
             ),

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:either_dart/src/either.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,9 +16,15 @@ class QuoteRepositoryImpl implements QuoteRepository {
   final FirebaseFirestore firebaseFirestore;
 
   @override
-  Future<Either<Failure, void>> addNewQuote(String collection, QuoteModel quote) {
-    // TODO(pafello): implement addNewQuote
-    throw UnimplementedError();
+  Future<Either<Failure, void>> addNewQuote(String collection, QuoteModel quote) async {
+    try {
+      final docRef = await firebaseFirestore.collection('users').doc(uID).collection('quotes').add(quote.toJson());
+      await docRef.update({'collectionId': collection, 'id': docRef.id});
+
+      return const Right(null);
+    } on SocketException catch (e, st) {
+      return Left(NoInternetFailure(e.toString(), st));
+    }
   }
 
   @override
@@ -62,6 +70,18 @@ class QuoteRepositoryImpl implements QuoteRepository {
       await ref.delete();
 
       return const Right(null);
+    } catch (e, st) {
+      return Left(UnknownFailure(e.toString(), st));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> updateQuote(String collection, QuoteModel quote) async {
+    try {
+      await firebaseFirestore.collection('users').doc(uID).collection('quotes').doc(quote.id).update(quote.toJson());
+      return const Right(null);
+    } on SocketException catch (e, st) {
+      return Left(NoInternetFailure(e.toString(), st));
     } catch (e, st) {
       return Left(UnknownFailure(e.toString(), st));
     }

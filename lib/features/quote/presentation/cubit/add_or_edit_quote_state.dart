@@ -8,7 +8,10 @@ class AddOrEditQuoteState with _$AddOrEditQuoteState {
     @Default('autoId') String quoteId,
     @Default('') String content,
     DateTime? createdAt,
-    @Default(false) bool isLoading,
-    @Default(false) bool isSuccess,
+    @Default(false) bool showErrors,
+    TextValidationError? quoteValidation,
+    @Default(AddOrEditQuoteStatus.initial) AddOrEditQuoteStatus status,
   }) = _AddOrEditQuoteState;
 }
+
+enum AddOrEditQuoteStatus { initial, loading, success, failure }
