@@ -8,4 +8,5 @@ abstract class QuoteRepository {
   Future<Either<Failure, void>> addNewQuote(String collection, QuoteModel quote);
   Future<Either<Failure, void>> updateQuote(String collection, QuoteModel quote);
   Future<Either<Failure, void>> deleteQuote(String collectionId, String quoteId);
+  Stream<int> quotesQuantityStream();
 }

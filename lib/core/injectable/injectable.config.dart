@@ -93,8 +93,10 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i12.TextValidator>(),
           gh<_i14.AuthRepository>(),
         ));
-    gh.factory<_i19.HomeCubit>(
-        () => _i19.HomeCubit(gh<_i16.CollectionRepository>()));
+    gh.factory<_i19.HomeCubit>(() => _i19.HomeCubit(
+          gh<_i16.CollectionRepository>(),
+          gh<_i7.QuoteRepository>(),
+        ));
     gh.factory<_i20.ImagePickerAndUploaderCubit>(
         () => _i20.ImagePickerAndUploaderCubit(
               gh<_i6.ImagePicker>(),

@@ -49,30 +49,35 @@ class HomePage extends StatelessWidget {
                     ],
                   ),
                   Spacers.xs,
-                  Text(
-                    'There is 323 quotes in your vault!',
-                    style: context.textTheme.bodyMedium,
-                  ),
-                  Spacers.xxl,
-                  HeaderWithButtonAndDivider(
-                    title: 'Kolekcje',
-                    onPressed: () => context.push(Routes.addOrEditCollection),
-                    icon: Icons.add,
-                  ),
                   state.maybeWhen(
                     orElse: CircularProgressIndicator.adaptive,
-                    loaded: (collections) {
+                    loaded: (collections, quotesQuantity) {
                       return Column(
-                        children: collections
-                            .map(
-                              (c) => Column(
-                                children: [
-                                  CollectionListTile(collection: c),
-                                  Spacers.l,
-                                ],
-                              ),
-                            )
-                            .toList(),
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            quotesQuantity < 1
+                                ? 'Go ahead and start adding quotes'
+                                : 'There is $quotesQuantity quotes in your vault!',
+                            style: context.textTheme.bodyMedium,
+                          ),
+                          Spacers.xxl,
+                          HeaderWithButtonAndDivider(
+                            title: 'Kolekcje',
+                            onPressed: () => context.push(Routes.addOrEditCollection),
+                            icon: Icons.add,
+                          ),
+                          ...collections
+                              .map(
+                                (c) => Column(
+                                  children: [
+                                    CollectionListTile(collection: c),
+                                    Spacers.l,
+                                  ],
+                                ),
+                              )
+                              .toList(),
+                        ],
                       );
                     },
                   ),
