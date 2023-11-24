@@ -46,7 +46,7 @@ class AddOrEditQuotePage extends StatelessWidget {
               title: Text(state.isEditing ? 'Edytuj cytat' : 'Dodaj nowy cytat'),
             ),
             body: DefaultPagePadding(
-              child: Column(
+              child: ListView(
                 children: [
                   TextFormField(
                     decoration: const InputDecoration(
