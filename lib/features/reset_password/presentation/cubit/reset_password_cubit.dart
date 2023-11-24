@@ -21,10 +21,12 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
     final emailValidation = _textValidator(EmailTextValidation(email));
     state.mapOrNull(
       initial: (state) {
-        emit(state.copyWith(
-          email: email,
-          emailValidation: emailValidation,
-        ));
+        emit(
+          state.copyWith(
+            email: email,
+            emailValidation: emailValidation,
+          ),
+        );
       },
     );
   }

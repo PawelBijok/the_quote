@@ -17,7 +17,7 @@ class ResetPasswordPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => getIt<ResetPasswordCubit>(),
       child: Scaffold(
-        appBar: AppBar(title: Text("Zapomniałeś hasła?")),
+        appBar: AppBar(title: const Text('Zapomniałeś hasła?')),
         body: DefaultPagePadding(
           child: BlocConsumer<ResetPasswordCubit, ResetPasswordState>(
             listener: (context, state) {
@@ -25,16 +25,19 @@ class ResetPasswordPage extends StatelessWidget {
                 success: (_) {
                   //TODO show messeage;
 
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(const SnackBar(content: Text('Email z linkiem resetującym hasło został wysłany')));
                   context.pop();
                 },
                 failure: (_) {
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Coś poszło nie tak!")));
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Coś poszło nie tak!')));
                 },
               );
             },
             builder: (context, state) {
               return state.maybeMap(
                   initial: (state) {
+                    print(state);
                     return Form(
                       autovalidateMode: state.showErrors ? AutovalidateMode.always : AutovalidateMode.disabled,
                       child: Column(
@@ -42,7 +45,7 @@ class ResetPasswordPage extends StatelessWidget {
                           TextFormField(
                             decoration: InputDecoration(
                               label: Text(LocaleKeys.email.tr()),
-                              errorText: state.emailValidation?.toKey().tr(),
+                              errorText: state.showErrors ? state.emailValidation?.toKey().tr() : null,
                             ),
                             onChanged: context.read<ResetPasswordCubit>().onEmailChanged,
                           ),
@@ -50,14 +53,14 @@ class ResetPasswordPage extends StatelessWidget {
                           ElevatedButton(
                             onPressed: context.read<ResetPasswordCubit>().onSubmit,
                             child: const Text(
-                              "Resetuj hasło",
+                              'Resetuj hasło',
                             ),
                           )
                         ],
                       ),
                     );
                   },
-                  orElse: () => SizedBox.shrink());
+                  orElse: () => const SizedBox.shrink());
             },
           ),
         ),
