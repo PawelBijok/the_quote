@@ -66,12 +66,12 @@ class AddOrEditQuoteCubit extends Cubit<AddOrEditQuoteState> {
       id: state.quoteId,
       content: state.content,
       createdAt: state.isEditing ? state.createdAt! : DateTime.now(),
+      collectionId: state.collectionId,
     );
     late final Either<Failure, void> failureOrNull;
     if (state.isEditing) {
       failureOrNull = await _quoteRepository.updateQuote(state.collectionId, quote);
     } else {
-      print('heheheheheh');
       failureOrNull = await _quoteRepository.addNewQuote(state.collectionId, quote);
     }
     failureOrNull.fold((left) {

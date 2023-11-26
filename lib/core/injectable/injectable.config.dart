@@ -19,15 +19,15 @@ import 'package:injectable/injectable.dart' as _i2;
 import '../../features/auth/data/repositories/firebase_auth_repository.dart'
     as _i15;
 import '../../features/auth/domain/repositories/auth_repository.dart' as _i14;
-import '../../features/auth/presentation/cubit/auth_cubit.dart' as _i23;
+import '../../features/auth/presentation/cubit/auth_cubit.dart' as _i24;
 import '../../features/collection/domain/data/repositories/collection_repository_impl.dart'
     as _i17;
 import '../../features/collection/domain/repositories/collection_repository.dart'
     as _i16;
 import '../../features/collection/presentation/pages/add_or_edit_collection/cubit/add_or_edit_collection_cubit.dart'
-    as _i22;
+    as _i23;
 import '../../features/collection/presentation/pages/collection/cubit/collection_cubit.dart'
-    as _i24;
+    as _i25;
 import '../../features/email_base_auth/presentation/cubit/continue_with_email_cubit.dart'
     as _i18;
 import '../../features/home/presentation/page/cubit/home_cubit.dart' as _i19;
@@ -38,6 +38,7 @@ import '../../features/quote/presentation/cubit/add_or_edit_quote_cubit.dart'
     as _i13;
 import '../../features/reset_password/presentation/cubit/reset_password_cubit.dart'
     as _i21;
+import '../../features/search/presentation/cubit/search_cubit.dart' as _i22;
 import '../../features/start/presentation/cubit/start_cubit.dart' as _i11;
 import '../../shared/application/image_picker_and_uploader/image_picker_and_uploader_cubit.dart'
     as _i20;
@@ -45,10 +46,10 @@ import '../../shared/data/repositories/firebase_remote_storage_repository.dart'
     as _i10;
 import '../../shared/domain/repositories/remote_storage_repository.dart' as _i9;
 import '../validators/text/text_validators.dart' as _i12;
-import 'modules/firebase_auth_module.dart' as _i27;
-import 'modules/firebase_firestore_module.dart' as _i25;
-import 'modules/firebase_storage_module.dart' as _i26;
-import 'modules/image_picker_module.dart' as _i28;
+import 'modules/firebase_auth_module.dart' as _i28;
+import 'modules/firebase_firestore_module.dart' as _i26;
+import 'modules/firebase_storage_module.dart' as _i27;
+import 'modules/image_picker_module.dart' as _i29;
 
 extension GetItInjectableX on _i1.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -106,11 +107,15 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i12.TextValidator>(),
           gh<_i14.AuthRepository>(),
         ));
-    gh.factory<_i22.AddOrEditCollectionCubit>(
-        () => _i22.AddOrEditCollectionCubit(gh<_i16.CollectionRepository>()));
-    gh.lazySingleton<_i23.AuthCubit>(
-        () => _i23.AuthCubit(gh<_i14.AuthRepository>()));
-    gh.factory<_i24.CollectionCubit>(() => _i24.CollectionCubit(
+    gh.factory<_i22.SearchCubit>(() => _i22.SearchCubit(
+          gh<_i12.TextValidator>(),
+          gh<_i7.QuoteRepository>(),
+        ));
+    gh.factory<_i23.AddOrEditCollectionCubit>(
+        () => _i23.AddOrEditCollectionCubit(gh<_i16.CollectionRepository>()));
+    gh.lazySingleton<_i24.AuthCubit>(
+        () => _i24.AuthCubit(gh<_i14.AuthRepository>()));
+    gh.factory<_i25.CollectionCubit>(() => _i25.CollectionCubit(
           gh<_i16.CollectionRepository>(),
           gh<_i7.QuoteRepository>(),
         ));
@@ -118,10 +123,10 @@ extension GetItInjectableX on _i1.GetIt {
   }
 }
 
-class _$FirebaseFirestoreModule extends _i25.FirebaseFirestoreModule {}
+class _$FirebaseFirestoreModule extends _i26.FirebaseFirestoreModule {}
 
-class _$FirebaseStorageModule extends _i26.FirebaseStorageModule {}
+class _$FirebaseStorageModule extends _i27.FirebaseStorageModule {}
 
-class _$FirebaseAuthModule extends _i27.FirebaseAuthModule {}
+class _$FirebaseAuthModule extends _i28.FirebaseAuthModule {}
 
-class _$ImagePickerModule extends _i28.ImagePickerModule {}
+class _$ImagePickerModule extends _i29.ImagePickerModule {}
