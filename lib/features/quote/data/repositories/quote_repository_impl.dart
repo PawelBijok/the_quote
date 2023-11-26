@@ -102,4 +102,19 @@ class QuoteRepositoryImpl implements QuoteRepository {
         .snapshots()
         .map((event) => int.parse(event.data()?['quotesQuantity'].toString() ?? '0'));
   }
+
+  @override
+  Future<Either<Failure, List<QuoteModel>>> getQuotes(String? prompt) async {
+    try {
+      final quotes = (await firebaseFirestore.collection('users').doc(uID).collection('quotes').get())
+          .docs
+          .map((e) => QuoteModel.fromJson(e.data()))
+          .toList();
+      return Right(quotes);
+    } on SocketException catch (e, st) {
+      return Left(NoInternetFailure(e.toString(), st));
+    } catch (e, st) {
+      return Left(UnknownFailure(e.toString(), st));
+    }
+  }
 }

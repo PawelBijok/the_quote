@@ -10,6 +10,7 @@ part 'quote_model.g.dart';
 class QuoteModel with _$QuoteModel {
   const factory QuoteModel({
     required String id,
+    required String collectionId,
     required String content,
     @TimestampToDateTimeConverter() required DateTime createdAt,
     @Default([]) List<TagModel> tags,
