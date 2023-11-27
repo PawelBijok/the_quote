@@ -64,7 +64,7 @@ class AddOrEditQuotePage extends StatelessWidget {
                     initialValue: state.content,
                     onChanged: context.read<AddOrEditQuoteCubit>().onContentChanged,
                   ),
-                  SizedBox(height: 50, child: VerticalDivider()),
+                  const SizedBox(height: 50, child: VerticalDivider()),
                   Container(
                     decoration: BoxDecoration(
                       // color: context.colorScheme.primary,

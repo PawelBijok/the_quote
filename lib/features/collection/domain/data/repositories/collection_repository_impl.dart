@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:either_dart/src/either.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -61,5 +63,17 @@ class CollectionRepositoryImpl implements CollectionRepository {
 
   String? get uID {
     return firebaseAuth.currentUser?.uid;
+  }
+
+  @override
+  Future<Either<Failure, void>> deleteCollection(String id) async {
+    try {
+      await firebaseFirestore.collection('users').doc(uID).collection('collections').doc(id).delete();
+      return const Right(null);
+    } on SocketException catch (e, st) {
+      return Left(NoInternetFailure(e.toString(), st));
+    } catch (e, st) {
+      return Left(UnknownFailure(e.toString(), st));
+    }
   }
 }

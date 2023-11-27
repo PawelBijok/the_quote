@@ -6,6 +6,7 @@ import 'package:the_quote/core/router/dtos/add_or_edit_quote_route_dto.dart';
 import 'package:the_quote/core/router/routes.dart';
 import 'package:the_quote/features/collection/domain/models/collection_model.dart';
 import 'package:the_quote/features/collection/presentation/pages/collection/cubit/collection_cubit.dart';
+import 'package:the_quote/features/collection/presentation/widgets/delete_collection_alert.dart';
 import 'package:the_quote/features/collection/presentation/widgets/quote_list_tile.dart';
 import 'package:the_quote/shared/presentation/widgets/common/header_with_button_and_divider.dart';
 import 'package:the_quote/shared/presentation/widgets/layout/default_page_padding.dart';
@@ -37,6 +38,24 @@ class CollectionPage extends StatelessWidget {
                         context.push(Routes.addOrEditCollection, extra: state.collection);
                       },
                       icon: const Icon(Icons.edit),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        showDialog<void>(
+                          context: context,
+                          builder: (_) => DeleteCollectionAlert(
+                            name: state.collection.title,
+                            quotesQuantity: state.collection.quotesQuantity,
+                            onDeletePressed: () {
+                              context.read<CollectionCubit>().deleteCollection();
+                              context.pop();
+                            },
+                          ),
+                        );
+                      },
+                      icon: const Icon(
+                        Icons.delete,
+                      ),
                     )
                   ];
                 },

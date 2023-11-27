@@ -43,6 +43,17 @@ class CollectionCubit extends Cubit<CollectionState> {
     subs.add(sub);
   }
 
+  Future<void> deleteCollection() async {
+    await state.mapOrNull(
+      loaded: (state) async {
+        for (final sub in subs) {
+          await sub.cancel();
+        }
+        await collectionRepository.deleteCollection(state.collection.id);
+      },
+    );
+  }
+
   Future<void> deleteQuote(String quoteId) async {
     await quoteRepository.deleteQuote(collectionId, quoteId);
   }
