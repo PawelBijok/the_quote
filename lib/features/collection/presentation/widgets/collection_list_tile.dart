@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_quote/core/extensions/extensions.dart';
 import 'package:the_quote/core/images/raster_images.dart';
+import 'package:the_quote/core/l10n/locale_keys.g.dart';
 import 'package:the_quote/core/router/routes.dart';
 import 'package:the_quote/features/collection/domain/models/collection_model.dart';
 import 'package:the_quote/shared/presentation/widgets/layout/spacers.dart';
@@ -73,7 +75,9 @@ class CollectionListTile extends StatelessWidget {
                   ),
                   Spacers.xs,
                   Text(
-                    collection.quotesQuantity > 0 ? '${collection.quotesQuantity} quotes' : 'No quotes yet',
+                    collection.quotesQuantity > 0
+                        ? '${LocaleKeys.quotes.tr()}: ${collection.quotesQuantity}'
+                        : LocaleKeys.noQuotesYet.tr(),
                     style: context.textTheme.labelSmall,
                   ),
                   Divider(

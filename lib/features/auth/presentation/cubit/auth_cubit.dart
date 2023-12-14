@@ -25,6 +25,10 @@ class AuthCubit extends Cubit<AuthState> with ChangeNotifier {
     notifyListeners();
   }
 
+  void setSignIn() {
+    tryAutoLogin();
+  }
+
   Future<void> logout() async {
     await authRepository.signOut();
     emit(const AuthState.signedOut());

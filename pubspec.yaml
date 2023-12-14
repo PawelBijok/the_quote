@@ -31,6 +31,7 @@ dependencies:
   json_annotation: ^4.8.1
   melos: ^3.1.1
   rxdart: ^0.27.7
+  shared_preferences: ^2.2.2
   shimmer: ^3.0.0
   transparent_image: ^2.0.1
   uuid: ^4.1.0

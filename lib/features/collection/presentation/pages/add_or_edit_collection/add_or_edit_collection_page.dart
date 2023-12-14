@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_quote/core/injectable/injectable.dart';
+import 'package:the_quote/core/l10n/locale_keys.g.dart';
 import 'package:the_quote/features/collection/domain/models/collection_model.dart';
 import 'package:the_quote/features/collection/presentation/pages/add_or_edit_collection/cubit/add_or_edit_collection_cubit.dart';
 import 'package:the_quote/shared/presentation/widgets/layout/default_page_padding.dart';
@@ -39,7 +41,7 @@ class AddOrEditCollectionPage extends StatelessWidget {
 
                       return SliverAppBar(
                         title: Text(
-                          isEditing ? 'Edit collection' : 'Add new collection',
+                          isEditing ? LocaleKeys.editCollection.tr() : LocaleKeys.addNewCollection.tr(),
                         ),
                         expandedHeight: 300,
                         flexibleSpace: FlexibleSpaceBar(
@@ -79,15 +81,15 @@ class _Body extends StatelessWidget {
           child: Column(
             children: [
               TextFormField(
-                decoration: const InputDecoration(
-                  label: Text('Collection title'),
+                decoration: InputDecoration(
+                  label: Text(LocaleKeys.collectionTitle.tr()),
                 ),
                 initialValue: title,
                 onChanged: context.read<AddOrEditCollectionCubit>().onTitleChanged,
               ),
               TextFormField(
-                decoration: const InputDecoration(
-                  label: Text('Collection description'),
+                decoration: InputDecoration(
+                  label: Text(LocaleKeys.collectionDescription.tr()),
                 ),
                 keyboardType: TextInputType.multiline,
                 maxLines: null,
@@ -98,14 +100,14 @@ class _Body extends StatelessWidget {
               SizedBox(
                 child: ElevatedButton(
                   onPressed: context.read<AddOrEditCollectionCubit>().onSave,
-                  child: const Text('Save'),
+                  child: Text(LocaleKeys.save.tr()),
                 ),
               ),
               OutlinedButton(
                 onPressed: () {
                   context.pop();
                 },
-                child: const Text('Cancel'),
+                child: Text(LocaleKeys.cancel.tr()),
               ),
             ],
           ),

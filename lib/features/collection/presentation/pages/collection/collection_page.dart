@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_quote/core/injectable/injectable.dart';
+import 'package:the_quote/core/l10n/locale_keys.g.dart';
 import 'package:the_quote/core/router/dtos/add_or_edit_quote_route_dto.dart';
 import 'package:the_quote/core/router/routes.dart';
 import 'package:the_quote/features/collection/domain/models/collection_model.dart';
@@ -101,8 +103,8 @@ class CollectionPage extends StatelessWidget {
                         Spacers.xxl,
                         const Divider(),
                         Spacers.xxl,
-                        const Text(
-                          'Nie masz jeszcze żadnych cytatów',
+                        Text(
+                          LocaleKeys.youDontHaveAnyQuotesYet.tr(),
                           textAlign: TextAlign.center,
                         ),
                         Spacers.m,
@@ -110,13 +112,13 @@ class CollectionPage extends StatelessWidget {
                           onPressed: () {
                             context.push(Routes.addOrEditQuote, extra: AddOrEditQuoteRouteDto(collectionId: id));
                           },
-                          label: const Text('Dodaj pierwszy cytat'),
+                          label: Text(LocaleKeys.addFirstQuote.tr()),
                           icon: const Icon(Icons.add),
                         )
                       ],
                       if (hasQuotes) ...[
                         HeaderWithButtonAndDivider(
-                          title: 'Cytaty',
+                          title: LocaleKeys.quotes.tr(),
                           onPressed: () {
                             context.push(Routes.addOrEditQuote, extra: AddOrEditQuoteRouteDto(collectionId: id));
                           },

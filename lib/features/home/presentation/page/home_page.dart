@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -6,6 +7,7 @@ import 'package:the_quote/core/extensions/extensions.dart';
 import 'package:the_quote/core/fonts/fonts.dart';
 import 'package:the_quote/core/images/svg_images.dart';
 import 'package:the_quote/core/injectable/injectable.dart';
+import 'package:the_quote/core/l10n/locale_keys.g.dart';
 import 'package:the_quote/core/router/routes.dart';
 import 'package:the_quote/features/collection/presentation/widgets/collection_list_tile.dart';
 import 'package:the_quote/features/home/presentation/page/cubit/home_cubit.dart';
@@ -31,7 +33,7 @@ class HomePage extends StatelessWidget {
                     children: [
                       Flexible(
                         child: Text(
-                          'Welcome back',
+                          LocaleKeys.welcomeBack.tr(),
                           style: context.textTheme.headlineLarge?.copyWith(
                             fontFamily: Fonts.sourceSerifPro,
                           ),
@@ -57,13 +59,17 @@ class HomePage extends StatelessWidget {
                         children: [
                           Text(
                             quotesQuantity < 1
-                                ? 'Go ahead and start adding quotes'
-                                : 'There is $quotesQuantity quotes in your vault!',
+                                ? LocaleKeys.goAheadAndStartAddingQuotes.tr()
+                                : LocaleKeys.quotesInYourValut.tr(
+                                    namedArgs: {
+                                      'quotes': quotesQuantity.toString(),
+                                    },
+                                  ),
                             style: context.textTheme.bodyMedium,
                           ),
                           Spacers.xxl,
                           HeaderWithButtonAndDivider(
-                            title: 'Kolekcje',
+                            title: LocaleKeys.collections.tr(),
                             onPressed: () => context.push(Routes.addOrEditCollection),
                             icon: Icons.add,
                           ),

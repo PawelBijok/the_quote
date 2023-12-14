@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_quote/core/extensions/extensions.dart';
 import 'package:the_quote/core/fonts/fonts.dart';
 import 'package:the_quote/core/injectable/injectable.dart';
+import 'package:the_quote/core/l10n/locale_keys.g.dart';
 import 'package:the_quote/features/quote/domain/models/quote_model.dart';
 import 'package:the_quote/features/quote/presentation/cubit/add_or_edit_quote_cubit.dart';
 import 'package:the_quote/shared/presentation/widgets/layout/default_page_padding.dart';
@@ -28,14 +30,16 @@ class AddOrEditQuotePage extends StatelessWidget {
           if (state.status == AddOrEditQuoteStatus.success) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(state.isEditing ? 'Pomyślnie zapisano cytat' : 'Pomyślnie dodano nowy cytat do kolecji'),
+                content: Text(state.isEditing
+                    ? LocaleKeys.quoteSavedSuccessfully.tr()
+                    : LocaleKeys.newQuoteAddedSuccessfully.tr()),
               ),
             );
             context.pop();
           } else if (state.status == AddOrEditQuoteStatus.failure) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Coś poszło nie tak, spróbuj ponownie później'),
+              SnackBar(
+                content: Text(LocaleKeys.somethingWentWrong.tr()),
               ),
             );
           }
@@ -43,15 +47,15 @@ class AddOrEditQuotePage extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              title: Text(state.isEditing ? 'Edytuj cytat' : 'Dodaj nowy cytat'),
+              title: Text(state.isEditing ? LocaleKeys.editQuote.tr() : LocaleKeys.addNewQuote.tr()),
             ),
             body: DefaultPagePadding(
               child: ListView(
                 children: [
                   TextFormField(
-                    decoration: const InputDecoration(
-                      label: Text('Quote content'),
-                      border: OutlineInputBorder(
+                    decoration: InputDecoration(
+                      label: Text(LocaleKeys.quoteContent.tr()),
+                      border: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(10),
                         ),
@@ -80,7 +84,7 @@ class AddOrEditQuotePage extends StatelessWidget {
                       child: Column(
                         children: [
                           Text(
-                            'Get from photo',
+                            LocaleKeys.getFromPhoto.tr(),
                             style: context.textTheme.titleMedium,
                           ),
                           Spacers.l,
@@ -90,9 +94,9 @@ class AddOrEditQuotePage extends StatelessWidget {
                               FloatingActionButton(
                                 onPressed: () {},
                                 heroTag: null,
-                                child: Icon(Icons.image),
+                                child: const Icon(Icons.image),
                               ),
-                              FloatingActionButton(
+                              const FloatingActionButton(
                                 heroTag: null,
                                 onPressed: null,
                                 child: Icon(Icons.camera_alt),
@@ -101,7 +105,7 @@ class AddOrEditQuotePage extends StatelessWidget {
                           ),
                           Spacers.l,
                           Text(
-                            'AI will find any text in the photo ',
+                            LocaleKeys.aiWillFindAnyTextInThePhoto.tr(),
                             textAlign: TextAlign.center,
                             style: context.textTheme.labelMedium,
                           )
@@ -112,7 +116,7 @@ class AddOrEditQuotePage extends StatelessWidget {
                   Spacers.xxl,
                   ElevatedButton(
                     onPressed: context.read<AddOrEditQuoteCubit>().save,
-                    child: const Text('Zapisz'),
+                    child: Text(LocaleKeys.save.tr()),
                   )
                 ],
               ),

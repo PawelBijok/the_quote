@@ -6,6 +6,7 @@ import 'package:the_quote/core/injectable/injectable.dart';
 import 'package:the_quote/core/router/router.dart';
 import 'package:the_quote/core/themes/themes.dart';
 import 'package:the_quote/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:the_quote/features/settings/presentation/cubit/settings_cubit.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -13,15 +14,27 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return KeyboardVisibilityProvider(
-      child: BlocProvider(
-        create: (context) => getIt<AuthCubit>()..tryAutoLogin(),
-        child: MaterialApp.router(
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          locale: context.locale,
-          theme: Themes.lightTheme,
-          darkTheme: Themes.darkTheme,
-          routerConfig: router,
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => getIt<AuthCubit>()..tryAutoLogin(),
+          ),
+          BlocProvider(
+            create: (context) => getIt<SettingsCubit>()..init(),
+          ),
+        ],
+        child: BlocBuilder<SettingsCubit, SettingsState>(
+          builder: (context, settingsState) {
+            return MaterialApp.router(
+              localizationsDelegates: context.localizationDelegates,
+              supportedLocales: context.supportedLocales,
+              locale: context.locale,
+              theme: Themes.lightTheme,
+              themeMode: settingsState.themeMode,
+              darkTheme: Themes.darkTheme,
+              routerConfig: router,
+            );
+          },
         ),
       ),
     );
