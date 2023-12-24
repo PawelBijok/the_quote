@@ -20,7 +20,7 @@ import '../../features/auth/data/repositories/firebase_auth_repository.dart'
     as _i16;
 import '../../features/auth/domain/repositories/auth_repository.dart' as _i15;
 import '../../features/auth/presentation/cubit/auth_cubit.dart' as _i25;
-import '../../features/collection/domain/data/repositories/collection_repository_impl.dart'
+import '../../features/collection/data/repositories/collection_repository_impl.dart'
     as _i18;
 import '../../features/collection/domain/repositories/collection_repository.dart'
     as _i17;
