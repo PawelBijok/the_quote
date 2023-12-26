@@ -18,7 +18,7 @@ final router = GoRouter(
   refreshListenable: getIt<AuthCubit>(),
   initialLocation: Routes.root,
   redirect: (context, state) {
-    final location = state.location;
+    final location = state.matchedLocation;
 
     final authState = getIt<AuthCubit>().state;
     return authState.mapOrNull(
