@@ -4,8 +4,7 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_lambdas
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: type=lint
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
@@ -47,13 +46,13 @@ import '../../shared/data/repositories/firebase_remote_storage_repository.dart'
     as _i10;
 import '../../shared/domain/repositories/remote_storage_repository.dart' as _i9;
 import '../validators/text/text_validators.dart' as _i13;
-import 'modules/firebase_auth_module.dart' as _i29;
-import 'modules/firebase_firestore_module.dart' as _i27;
-import 'modules/firebase_storage_module.dart' as _i28;
+import 'modules/firebase_auth_module.dart' as _i27;
+import 'modules/firebase_firestore_module.dart' as _i28;
+import 'modules/firebase_storage_module.dart' as _i29;
 import 'modules/image_picker_module.dart' as _i30;
 
 extension GetItInjectableX on _i1.GetIt {
-  // initializes the registration of main-scope dependencies inside of GetIt
+// initializes the registration of main-scope dependencies inside of GetIt
   _i1.GetIt init({
     String? environment,
     _i2.EnvironmentFilter? environmentFilter,
@@ -125,10 +124,10 @@ extension GetItInjectableX on _i1.GetIt {
   }
 }
 
-class _$FirebaseFirestoreModule extends _i27.FirebaseFirestoreModule {}
+class _$FirebaseAuthModule extends _i27.FirebaseAuthModule {}
 
-class _$FirebaseStorageModule extends _i28.FirebaseStorageModule {}
+class _$FirebaseFirestoreModule extends _i28.FirebaseFirestoreModule {}
 
-class _$FirebaseAuthModule extends _i29.FirebaseAuthModule {}
+class _$FirebaseStorageModule extends _i29.FirebaseStorageModule {}
 
 class _$ImagePickerModule extends _i30.ImagePickerModule {}
