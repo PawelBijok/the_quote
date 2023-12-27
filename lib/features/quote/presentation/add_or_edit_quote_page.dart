@@ -92,7 +92,9 @@ class AddOrEditQuotePage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               FloatingActionButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  context.read<AddOrEditQuoteCubit>().getFromImage();
+                                },
                                 heroTag: null,
                                 child: const Icon(Icons.image),
                               ),

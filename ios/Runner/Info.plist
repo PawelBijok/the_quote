@@ -9,6 +9,10 @@
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need to pick quote images</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Wee need to take photos of quotes</string>
 	<key>CFBundleDisplayName</key>
 	<string>The Quote</string>
 	<key>CFBundleExecutable</key>

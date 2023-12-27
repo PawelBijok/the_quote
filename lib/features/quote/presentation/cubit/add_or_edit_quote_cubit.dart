@@ -1,6 +1,11 @@
+import 'dart:math';
+import 'dart:ui';
+
 import 'package:bloc/bloc.dart';
 import 'package:either_dart/either.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:the_quote/core/validators/text/text_validation_error.dart';
 import 'package:the_quote/core/validators/text/text_validation_option.dart';
@@ -36,6 +41,35 @@ class AddOrEditQuoteCubit extends Cubit<AddOrEditQuoteState> {
         collectionId: collectionId,
       ),
     );
+  }
+
+  Future<void> getFromImage() async {
+    print('test');
+    // final
+    final imagePicker = ImagePicker();
+    final image = await imagePicker.pickImage(source: ImageSource.gallery);
+    if (image == null) return;
+    final file = image.path;
+    final inputImage = InputImage.fromFilePath(file);
+    final textRecognizer = TextRecognizer(script: TextRecognitionScript.latin);
+    final RecognizedText recognizedText = await textRecognizer.processImage(inputImage);
+
+    String text = recognizedText.text;
+    for (TextBlock block in recognizedText.blocks) {
+      final Rect rect = block.boundingBox;
+      final List<Point<int>> cornerPoints = block.cornerPoints;
+      final String text = block.text;
+      final List<String> languages = block.recognizedLanguages;
+
+      for (final line in block.lines) {
+        // Same getters as TextBlock
+        for (final element in line.elements) {
+          // Same getters as TextBlock
+        }
+      }
+      print(text);
+      await textRecognizer.close();
+    }
   }
 
   void onContentChanged(String? content) {
