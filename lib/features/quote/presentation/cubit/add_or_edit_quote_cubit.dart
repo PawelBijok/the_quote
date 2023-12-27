@@ -44,32 +44,33 @@ class AddOrEditQuoteCubit extends Cubit<AddOrEditQuoteState> {
   }
 
   Future<void> getFromImage() async {
-    print('test');
-    // final
     final imagePicker = ImagePicker();
     final image = await imagePicker.pickImage(source: ImageSource.gallery);
     if (image == null) return;
     final file = image.path;
     final inputImage = InputImage.fromFilePath(file);
-    final textRecognizer = TextRecognizer(script: TextRecognitionScript.latin);
-    final RecognizedText recognizedText = await textRecognizer.processImage(inputImage);
+    final textRecognizer = TextRecognizer();
+    final recognizedText = await textRecognizer.processImage(inputImage);
 
-    String text = recognizedText.text;
+    final text = recognizedText.text;
     for (TextBlock block in recognizedText.blocks) {
       final Rect rect = block.boundingBox;
       final List<Point<int>> cornerPoints = block.cornerPoints;
       final String text = block.text;
       final List<String> languages = block.recognizedLanguages;
 
+      print('block: ${block.text}');
       for (final line in block.lines) {
         // Same getters as TextBlock
+        print('line: ${line.text}');
         for (final element in line.elements) {
           // Same getters as TextBlock
+          print('element: ${element.text}');
         }
       }
-      print(text);
-      await textRecognizer.close();
+      // print(text);
     }
+    await textRecognizer.close();
   }
 
   void onContentChanged(String? content) {
