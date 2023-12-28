@@ -58,5 +58,7 @@
   "thisCollectionContains": "This collection contains following number of quotes: {quotes}",
   "thisFieldIsRequired": "This field is required",
   "welcomeBack": "Welcome back",
-  "youDontHaveAnyQuotesYet": "You don't have any quotes yet"
+  "youDontHaveAnyQuotesYet": "You don't have any quotes yet",
+  "selectElementsThatYouWantToAppend": "Select elements that you want to append",
+  "selectPartOfTheTextYouWantToInclude": "Select part of the text you want to include"
 }

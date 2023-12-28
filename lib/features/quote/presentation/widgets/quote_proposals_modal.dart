@@ -1,8 +1,12 @@
+import 'package:collection/collection.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_quote/core/extensions/extensions.dart';
+import 'package:the_quote/core/l10n/locale_keys.g.dart';
 import 'package:the_quote/features/quote/presentation/cubit/add_or_edit_quote_cubit.dart';
-import 'package:the_quote/shared/presentation/widgets/layout/default_page_padding.dart';
+import 'package:the_quote/features/quote/presentation/widgets/quote_marker.dart';
+import 'package:the_quote/features/quote/presentation/widgets/quote_part_selector.dart';
 import 'package:the_quote/shared/presentation/widgets/layout/spacers.dart';
 
 class QuoteProposalsModal extends StatefulWidget {
@@ -16,6 +20,17 @@ class QuoteProposalsModal extends StatefulWidget {
 
 class _QuoteProposalsModalState extends State<QuoteProposalsModal> {
   final selectedTexts = <UniqueIdText>[];
+  String selectedPlainText = '';
+  void onSelectionChanged(String value) {
+    selectedPlainText = value;
+  }
+
+  bool showingList = true;
+  void toggleShowType() {
+    setState(() {
+      showingList = !showingList;
+    });
+  }
 
   void addToSelected(UniqueIdText text) {
     setState(() {
@@ -52,94 +67,83 @@ class _QuoteProposalsModalState extends State<QuoteProposalsModal> {
   @override
   Widget build(BuildContext context) {
     final textStyles = context.theme.textTheme;
-    return DefaultPagePadding(
-      child: ListView(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Expanded(
-                child: Text(
-                  'Select elements that you want to append',
-                  style: textStyles.labelLarge,
-                ),
+    return Column(
+      children: [
+        ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(10),
+            topRight: Radius.circular(10),
+          ),
+          child: ColoredBox(
+            color: context.colorScheme.background,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Expanded(
+                    child: Text(
+                      showingList
+                          ? LocaleKeys.selectElementsThatYouWantToAppend.tr()
+                          : LocaleKeys.selectPartOfTheTextYouWantToInclude.tr(),
+                      style: textStyles.labelLarge,
+                    ),
+                  ),
+                  Spacers.l,
+                  IconButton(
+                    onPressed: () {
+                      context.pop(null);
+                    },
+                    icon: Icon(
+                      Icons.close,
+                      color: context.colorScheme.error,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: toggleShowType,
+                    icon: Icon(
+                      showingList ? Icons.format_shapes : Icons.checklist_rtl_outlined,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () async {
+                      showingList
+                          ? context.pop(selectedTexts)
+                          : context.pop([UniqueIdText(id: -1, text: selectedPlainText)]);
+                    },
+                    icon: Icon(
+                      Icons.check,
+                      color: context.colorScheme.tertiary,
+                    ),
+                  ),
+                ],
               ),
-              Spacers.l,
-              IconButton(
-                  onPressed: () {
-                    context.pop(null);
-                  },
-                  icon: Icon(
-                    Icons.close,
-                    color: context.colorScheme.error,
-                  )),
-              IconButton(
-                  onPressed: () {
-                    context.pop(selectedTexts);
-                  },
-                  icon: Icon(
-                    Icons.check,
-                    color: context.colorScheme.tertiary,
-                  ))
-            ],
-          ),
-          Spacers.xl,
-          Text(
-            'Lines',
-            style: textStyles.labelLarge,
-          ),
-          ...widget.quoteProposals.lines.map(
-            (e) => _QuoteSelector(
-              element: e,
-              selected: isSelected(e),
-              onChanged: (v) => onChanged(v, e),
-              index: indexOfElement(e),
             ),
           ),
-          Spacers.xl,
-          Text(
-            'Blocks',
-            style: textStyles.labelLarge,
-          ),
-          ...widget.quoteProposals.blocks.map(
-            (e) => _QuoteSelector(
-              element: e,
-              selected: isSelected(e),
-              onChanged: (v) => onChanged(v, e),
-              index: indexOfElement(e),
+        ),
+        if (showingList)
+          Expanded(
+            child: ListView(
+              children: [
+                ...widget.quoteProposals.blocks.mapIndexed(
+                  (i, e) => QuoteSelector(
+                    element: e,
+                    selected: isSelected(e),
+                    onChanged: (v) => onChanged(v, e),
+                    index: indexOfElement(e),
+                    darkenBackground: i.isEven,
+                  ),
+                ),
+              ],
             ),
+          ),
+        if (!showingList) ...[
+          QuoteMarker(plainText: widget.quoteProposals.plainText, onSelectionChanged: onSelectionChanged),
+          const SizedBox(
+            height: 30,
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _QuoteSelector extends StatelessWidget {
-  const _QuoteSelector(
-      {required this.element, super.key, required this.selected, required this.onChanged, required this.index});
-
-  final UniqueIdText element;
-  final bool selected;
-  final ValueChanged<bool?> onChanged;
-  final int? index;
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      contentPadding: EdgeInsets.zero,
-      title: Text(element.text),
-      trailing: Badge(
-        isLabelVisible: index != null,
-        offset: const Offset(-2, 2),
-        label: Text(index.toString()),
-        child: Checkbox.adaptive(
-          value: selected,
-          checkColor: context.colorScheme.primary,
-          activeColor: context.colorScheme.primaryContainer,
-          shape: const CircleBorder(),
-          onChanged: onChanged,
-        ),
-      ),
+      ],
     );
   }
 }

@@ -92,6 +92,7 @@ class _AddOrEditQuotePageState extends State<AddOrEditQuotePage> {
             body: DefaultPagePadding(
               child: ListView(
                 children: [
+                  Spacers.s,
                   TextFormField(
                     key: Key(state.refreshInputKey),
                     decoration: InputDecoration(

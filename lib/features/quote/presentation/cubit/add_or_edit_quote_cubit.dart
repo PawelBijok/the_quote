@@ -41,6 +41,7 @@ class AddOrEditQuoteCubit extends Cubit<AddOrEditQuoteState> {
   }
 
   void onSelectedTexts(List<UniqueIdText>? texts) {
+    emit(state.copyWith(quoteProposals: null));
     if (texts == null || texts.isEmpty) {
       return;
     }
@@ -63,6 +64,9 @@ class AddOrEditQuoteCubit extends Cubit<AddOrEditQuoteState> {
     final lines = <UniqueIdText>[];
     for (final block in recognizedText.blocks) {
       blocks.add(UniqueIdText(id: ++id, text: block.text));
+      if (block.lines.length < 2) {
+        continue;
+      }
 
       for (final line in block.lines) {
         lines.add(UniqueIdText(id: ++id, text: line.text));

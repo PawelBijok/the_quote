@@ -58,5 +58,8 @@
   "thisCollectionContains": "Ta kolekcja posiada następującą ilość cytatów: {quotes}",
   "thisFieldIsRequired": "To pole jest wymagane",
   "welcomeBack": "Witaj ponownie",
-  "youDontHaveAnyQuotesYet": "Nie masz jeszcze żadnych cytatów"
+  "youDontHaveAnyQuotesYet": "Nie masz jeszcze żadnych cytatów",
+
+  "selectElementsThatYouWantToAppend": "Wybierz elementy cytatu które chcesz dodać",
+  "selectPartOfTheTextYouWantToInclude": "Zaznacz część cytatu którą chcesz dodać"
 }

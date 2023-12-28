@@ -44,7 +44,6 @@ class SearchCubit extends Cubit<SearchState> {
     if (state.status != SearchStatus.loaded || _quotes == null) {
       return;
     }
-    print(_quotes);
     emit(state.copyWith(quotes: _quotes!.where((element) => element.content.contains(prompt)).toList()));
   }
 }
