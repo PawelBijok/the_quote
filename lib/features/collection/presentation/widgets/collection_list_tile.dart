@@ -28,7 +28,7 @@ class CollectionListTile extends StatelessWidget {
           gradient: LinearGradient(
             colors: [
               context.colorScheme.primaryContainer.withOpacity(0.2).darken(),
-              context.colorScheme.primaryContainer.withOpacity(0.2)
+              context.colorScheme.primaryContainer.withOpacity(0.2),
             ],
           ),
           borderRadius: BorderRadius.circular(15),
@@ -93,7 +93,7 @@ class CollectionListTile extends StatelessWidget {
                     ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

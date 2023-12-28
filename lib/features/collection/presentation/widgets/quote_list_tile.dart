@@ -81,7 +81,7 @@ class QuoteListTile extends StatelessWidget {
                 Text(LocaleKeys.edit.tr()),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

@@ -58,7 +58,7 @@ class CollectionPage extends StatelessWidget {
                       icon: const Icon(
                         Icons.delete,
                       ),
-                    )
+                    ),
                   ];
                 },
               ),
@@ -114,7 +114,7 @@ class CollectionPage extends StatelessWidget {
                           },
                           label: Text(LocaleKeys.addFirstQuote.tr()),
                           icon: const Icon(Icons.add),
-                        )
+                        ),
                       ],
                       if (hasQuotes) ...[
                         HeaderWithButtonAndDivider(

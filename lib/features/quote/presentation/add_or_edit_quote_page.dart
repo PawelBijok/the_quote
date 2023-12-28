@@ -17,7 +17,7 @@ import 'package:the_quote/shared/presentation/widgets/layout/spacers.dart';
 typedef OnSelectedCallback = void Function(List<UniqueIdText>? selectedTexts);
 
 class AddOrEditQuotePage extends StatefulWidget {
-  const AddOrEditQuotePage({super.key, required this.collectionId, this.quoteToEdit});
+  const AddOrEditQuotePage({required this.collectionId, super.key, this.quoteToEdit});
 
   final String collectionId;
   final QuoteModel? quoteToEdit;
@@ -128,7 +128,7 @@ class _AddOrEditQuotePageState extends State<AddOrEditQuotePage> {
                     // height: 200,
                     width: 200,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8),
                       child: Column(
                         children: [
                           Text(
@@ -158,7 +158,7 @@ class _AddOrEditQuotePageState extends State<AddOrEditQuotePage> {
                             LocaleKeys.aiWillFindAnyTextInThePhoto.tr(),
                             textAlign: TextAlign.center,
                             style: context.textTheme.labelMedium,
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -167,7 +167,7 @@ class _AddOrEditQuotePageState extends State<AddOrEditQuotePage> {
                   ElevatedButton(
                     onPressed: context.read<AddOrEditQuoteCubit>().save,
                     child: Text(LocaleKeys.save.tr()),
-                  )
+                  ),
                 ],
               ),
             ),

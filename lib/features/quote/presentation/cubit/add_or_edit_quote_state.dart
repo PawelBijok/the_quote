@@ -26,28 +26,6 @@ class QuoteFromPhotoProposals with _$QuoteFromPhotoProposals {
     required List<UniqueIdText> blocks,
     @Default([]) List<UniqueIdText> selectedText,
   }) = _QuoteFromPhotoProposals;
-
-  factory QuoteFromPhotoProposals.test() => const _QuoteFromPhotoProposals(
-          plainText: 'To jest testowy tekst'
-              'To jest testowy testk To był testowy tekst To będzie testowy tekst To jest testowy testk To był testowy tekst To będzie testowy tekst',
-          lines: [
-            UniqueIdText(
-              id: 1,
-              text: 'To jest testowy testk',
-            ),
-            UniqueIdText(
-              id: 2,
-              text: 'To był testowy tekst',
-            ),
-            UniqueIdText(id: 3, text: 'To będzie testowy tekst'),
-          ],
-          blocks: [
-            UniqueIdText(
-              id: 5,
-              text: 'To jest testowy testk To był testowy tekst To będzie testowy tekst',
-            ),
-            UniqueIdText(id: 4, text: 'To jest testowy testk To był testowy tekst To będzie testowy tekst'),
-          ]);
 }
 
 @freezed

@@ -10,7 +10,7 @@ import 'package:the_quote/features/quote/presentation/widgets/quote_part_selecto
 import 'package:the_quote/shared/presentation/widgets/layout/spacers.dart';
 
 class QuoteProposalsModal extends StatefulWidget {
-  const QuoteProposalsModal({super.key, required this.quoteProposals});
+  const QuoteProposalsModal({required this.quoteProposals, super.key});
 
   final QuoteFromPhotoProposals quoteProposals;
 
@@ -21,9 +21,6 @@ class QuoteProposalsModal extends StatefulWidget {
 class _QuoteProposalsModalState extends State<QuoteProposalsModal> {
   final selectedTexts = <UniqueIdText>[];
   String selectedPlainText = '';
-  void onSelectionChanged(String value) {
-    selectedPlainText = value;
-  }
 
   bool showingList = true;
   void toggleShowType() {
@@ -138,7 +135,10 @@ class _QuoteProposalsModalState extends State<QuoteProposalsModal> {
             ),
           ),
         if (!showingList) ...[
-          QuoteMarker(plainText: widget.quoteProposals.plainText, onSelectionChanged: onSelectionChanged),
+          QuoteMarker(
+            plainText: widget.quoteProposals.plainText,
+            onSelectionChanged: (value) => selectedPlainText = value,
+          ),
           const SizedBox(
             height: 30,
           ),

@@ -36,7 +36,6 @@ class ResetPasswordPage extends StatelessWidget {
             builder: (context, state) {
               return state.maybeMap(
                 initial: (state) {
-                  print(state);
                   return Form(
                     autovalidateMode: state.showErrors ? AutovalidateMode.always : AutovalidateMode.disabled,
                     child: Column(

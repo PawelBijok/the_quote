@@ -5,8 +5,12 @@ import 'package:the_quote/core/extensions/extensions.dart';
 import 'package:the_quote/core/l10n/locale_keys.g.dart';
 
 class DeleteCollectionAlert extends StatelessWidget {
-  const DeleteCollectionAlert(
-      {super.key, required this.name, required this.quotesQuantity, required this.onDeletePressed});
+  const DeleteCollectionAlert({
+    required this.name,
+    required this.quotesQuantity,
+    required this.onDeletePressed,
+    super.key,
+  });
   final String name;
   final int quotesQuantity;
   final VoidCallback onDeletePressed;

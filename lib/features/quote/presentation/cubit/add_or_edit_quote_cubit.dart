@@ -50,7 +50,7 @@ class AddOrEditQuoteCubit extends Cubit<AddOrEditQuoteState> {
   }
 
   Future<void> getFromImage() async {
-    int id = 0;
+    var id = 0;
     final imagePicker = ImagePicker();
     final image = await imagePicker.pickImage(source: ImageSource.gallery);
     if (image == null) return;
@@ -118,7 +118,6 @@ class AddOrEditQuoteCubit extends Cubit<AddOrEditQuoteState> {
     }
     failureOrNull.fold((left) {
       emit(state.copyWith(status: AddOrEditQuoteStatus.failure));
-      print('failure: $left');
     }, (right) {
       emit(state.copyWith(status: AddOrEditQuoteStatus.success));
     });

@@ -73,16 +73,14 @@ class HomePage extends StatelessWidget {
                             onPressed: () => context.push(Routes.addOrEditCollection),
                             icon: Icons.add,
                           ),
-                          ...collections
-                              .map(
-                                (c) => Column(
-                                  children: [
-                                    CollectionListTile(collection: c),
-                                    Spacers.l,
-                                  ],
-                                ),
-                              )
-                              .toList(),
+                          ...collections.map(
+                            (c) => Column(
+                              children: [
+                                CollectionListTile(collection: c),
+                                Spacers.l,
+                              ],
+                            ),
+                          ),
                         ],
                       );
                     },

@@ -55,7 +55,7 @@ class AddOrEditCollectionPage extends StatelessWidget {
                   ),
                   const SliverToBoxAdapter(
                     child: _Body(),
-                  )
+                  ),
                 ],
               ),
             ),

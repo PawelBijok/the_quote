@@ -9,6 +9,7 @@ class QuoteSelector extends StatelessWidget {
     required this.onChanged,
     required this.index,
     required this.darkenBackground,
+    super.key,
   });
 
   final UniqueIdText element;
