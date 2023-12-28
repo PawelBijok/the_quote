@@ -1,6 +1,3 @@
-import 'dart:math';
-import 'dart:ui';
-
 import 'package:bloc/bloc.dart';
 import 'package:either_dart/either.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -43,7 +40,16 @@ class AddOrEditQuoteCubit extends Cubit<AddOrEditQuoteState> {
     );
   }
 
+  void onSelectedTexts(List<UniqueIdText>? texts) {
+    if (texts == null || texts.isEmpty) {
+      return;
+    }
+    final reducedTexts = texts.map((e) => e.text).reduce((value, element) => '$value\n$element');
+    emit(state.copyWith(content: reducedTexts, refreshInputKey: '${reducedTexts.hashCode}'));
+  }
+
   Future<void> getFromImage() async {
+    int id = 0;
     final imagePicker = ImagePicker();
     final image = await imagePicker.pickImage(source: ImageSource.gallery);
     if (image == null) return;
@@ -52,24 +58,21 @@ class AddOrEditQuoteCubit extends Cubit<AddOrEditQuoteState> {
     final textRecognizer = TextRecognizer();
     final recognizedText = await textRecognizer.processImage(inputImage);
 
-    final text = recognizedText.text;
-    for (TextBlock block in recognizedText.blocks) {
-      final Rect rect = block.boundingBox;
-      final List<Point<int>> cornerPoints = block.cornerPoints;
-      final String text = block.text;
-      final List<String> languages = block.recognizedLanguages;
+    final plainText = recognizedText.text;
+    final blocks = <UniqueIdText>[];
+    final lines = <UniqueIdText>[];
+    for (final block in recognizedText.blocks) {
+      blocks.add(UniqueIdText(id: ++id, text: block.text));
 
-      print('block: ${block.text}');
       for (final line in block.lines) {
-        // Same getters as TextBlock
-        print('line: ${line.text}');
-        for (final element in line.elements) {
-          // Same getters as TextBlock
-          print('element: ${element.text}');
-        }
+        lines.add(UniqueIdText(id: ++id, text: line.text));
       }
-      // print(text);
     }
+    emit(
+      state.copyWith(
+        quoteProposals: QuoteFromPhotoProposals(plainText: plainText, lines: lines, blocks: blocks),
+      ),
+    );
     await textRecognizer.close();
   }
 
