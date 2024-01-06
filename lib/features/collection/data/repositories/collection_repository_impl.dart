@@ -69,11 +69,28 @@ class CollectionRepositoryImpl implements CollectionRepository {
   Future<Either<Failure, void>> deleteCollection(String id) async {
     try {
       await firebaseFirestore.collection('users').doc(uID).collection('collections').doc(id).delete();
+      final quotes = await firebaseFirestore
+          .collection('users')
+          .doc(uID)
+          .collection('quotes')
+          .where('collectionId', isEqualTo: id)
+          .get();
+      final quantity = quotes.docs.length;
+      quotes.docs.forEach((element) => element.reference.delete());
+      await _updateQuotesQuantityAfterDeletion(quantity: quantity);
       return const Right(null);
     } on SocketException catch (e, st) {
       return Left(NoInternetFailure(e.toString(), st));
     } catch (e, st) {
       return Left(UnknownFailure(e.toString(), st));
     }
+  }
+
+  Future<void> _updateQuotesQuantityAfterDeletion({required int quantity}) async {
+    const quotesQuantityKey = 'quotesQuantity';
+    final userRef = firebaseFirestore.collection('users').doc(uID);
+    final allQuotesQuantity = int.parse((await userRef.get()).data()?[quotesQuantityKey].toString() ?? '0');
+    final newAllQuotesQuantity = allQuotesQuantity - quantity;
+    await userRef.set({quotesQuantityKey: newAllQuotesQuantity}, SetOptions(merge: true));
   }
 }

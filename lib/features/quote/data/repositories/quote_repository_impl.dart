@@ -87,11 +87,11 @@ class QuoteRepositoryImpl implements QuoteRepository {
     final userRef = firebaseFirestore.collection('users').doc(uID);
     final allQuotesQuantity = int.parse((await userRef.get()).data()?[quotesQuantityKey].toString() ?? '0');
     final newAllQuotesQuantity = allQuotesQuantity + (isDeletion ? -1 : 1);
-    await userRef.update({quotesQuantityKey: newAllQuotesQuantity});
+    await userRef.set({quotesQuantityKey: newAllQuotesQuantity}, SetOptions(merge: true));
     final collectionRef = firebaseFirestore.collection('users').doc(uID).collection('collections').doc(collectionId);
     final collectionModel = CollectionModel.fromJson((await collectionRef.get()).data() ?? {});
     final newCollectionQuoteQuantity = collectionModel.quotesQuantity + (isDeletion ? -1 : 1);
-    await collectionRef.update({'quotesQuantity': newCollectionQuoteQuantity});
+    await collectionRef.set({'quotesQuantity': newCollectionQuoteQuantity}, SetOptions(merge: true));
   }
 
   @override
