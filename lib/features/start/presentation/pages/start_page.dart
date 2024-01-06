@@ -11,6 +11,8 @@ import 'package:the_quote/core/images/svg_images.dart';
 import 'package:the_quote/core/injectable/injectable.dart';
 import 'package:the_quote/core/l10n/locale_keys.g.dart';
 import 'package:the_quote/core/router/routes.dart';
+import 'package:the_quote/features/auth/domain/failures/auth_failure.dart';
+import 'package:the_quote/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:the_quote/features/start/presentation/cubit/start_cubit.dart';
 import 'package:the_quote/shared/presentation/widgets/buttons/sign_in_with_apple_button.dart';
 import 'package:the_quote/shared/presentation/widgets/buttons/sign_in_with_google_button.dart';
@@ -67,80 +69,106 @@ class _BodyState extends State<_Body> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: DefaultPagePadding(
-        child: Stack(
-          children: [
-            Positioned(
-              right: 10,
-              top: firstAnimation.value,
-              child: SvgPicture.asset(
-                SvgImages.quotes,
-                colorFilter: ColorFilter.mode(
-                  context.colorScheme.primary,
-                  BlendMode.srcIn,
+    return BlocConsumer<StartCubit, StartState>(
+      listener: (context, state) {
+        if (state.failure != null) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.failure!.toLocale)));
+        }
+        if (state.signedInUser != null) {
+          context.read<AuthCubit>().tryAutoLogin();
+        }
+      },
+      builder: (context, state) {
+        return SafeArea(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 30,
+                child: Center(
+                  child: AnimatedOpacity(
+                    opacity: state.loading ? 1 : 0,
+                    duration: const Duration(milliseconds: 200),
+                    child: const LinearProgressIndicator(),
+                  ),
                 ),
               ),
-            ),
-            Positioned(
-              right: 10,
-              top: secondAnimation.value,
-              child: SvgPicture.asset(
-                SvgImages.quotes,
-                colorFilter: ColorFilter.mode(
-                  context.colorScheme.primary.withOpacity(0.3),
-                  BlendMode.srcIn,
+              Expanded(
+                child: DefaultPagePadding(
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        right: 10,
+                        top: firstAnimation.value,
+                        child: SvgPicture.asset(
+                          SvgImages.quotes,
+                          colorFilter: ColorFilter.mode(
+                            context.colorScheme.primary,
+                            BlendMode.srcIn,
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        right: 10,
+                        top: secondAnimation.value,
+                        child: SvgPicture.asset(
+                          SvgImages.quotes,
+                          colorFilter: ColorFilter.mode(
+                            context.colorScheme.primary.withOpacity(0.3),
+                            BlendMode.srcIn,
+                          ),
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            LocaleKeys.appName.tr(),
+                            style: context.textTheme.displayLarge?.copyWith(fontFamily: Fonts.sourceSerifPro),
+                          ),
+                          Spacers.s,
+                          Text(
+                            LocaleKeys.appSlogan.tr(),
+                            style: context.textTheme.headlineSmall?.copyWith(fontFamily: Fonts.montserrat),
+                          ),
+                          Spacers.xxl,
+                          SizedBox(
+                            width: double.infinity,
+                            child: ElevatedButton(
+                              onPressed: state.loading ? null : () => context.push(Routes.continueWithEmail),
+                              child: Text(
+                                LocaleKeys.continueWithEmail.tr(),
+                              ),
+                            ),
+                          ),
+                          DividerWithText(
+                            text: LocaleKeys.or.tr(),
+                          ),
+                          SizedBox(
+                            width: double.infinity,
+                            child: SignInWithGoogleButton(
+                              onPressed: state.loading ? null : () => context.read<StartCubit>().signInWithGoogle(),
+                            ),
+                          ),
+                          Spacers.m,
+                          if (Platform.isIOS)
+                            SizedBox(
+                              width: double.infinity,
+                              child: SignInWithAppleButton(
+                                onPressed: state.loading ? null : () => context.read<StartCubit>().signInWithApple(),
+                              ),
+                            ),
+                          Spacers.fromHeight(60),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  LocaleKeys.appName.tr(),
-                  style: context.textTheme.displayLarge?.copyWith(fontFamily: Fonts.sourceSerifPro),
-                ),
-                Spacers.s,
-                Text(
-                  LocaleKeys.appSlogan.tr(),
-                  style: context.textTheme.headlineSmall?.copyWith(fontFamily: Fonts.montserrat),
-                ),
-                Spacers.xxl,
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      context.push(Routes.continueWithEmail);
-                    },
-                    child: Text(
-                      LocaleKeys.continueWithEmail.tr(),
-                    ),
-                  ),
-                ),
-                DividerWithText(
-                  text: LocaleKeys.or.tr(),
-                ),
-                SizedBox(
-                  width: double.infinity,
-                  child: SignInWithGoogleButton(
-                    onPressed: () {},
-                  ),
-                ),
-                Spacers.m,
-                if (Platform.isIOS)
-                  SizedBox(
-                    width: double.infinity,
-                    child: SignInWithAppleButton(
-                      onPressed: () {},
-                    ),
-                  ),
-                Spacers.fromHeight(60),
-              ],
-            ),
-          ],
-        ),
-      ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

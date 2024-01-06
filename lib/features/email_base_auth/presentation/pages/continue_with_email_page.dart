@@ -11,9 +11,9 @@ import 'package:the_quote/core/injectable/injectable.dart';
 import 'package:the_quote/core/l10n/locale_keys.g.dart';
 import 'package:the_quote/core/router/routes.dart';
 import 'package:the_quote/core/validators/text/text_validation_error.dart';
+import 'package:the_quote/features/auth/domain/failures/auth_failure.dart';
 import 'package:the_quote/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:the_quote/features/email_base_auth/presentation/cubit/continue_with_email_cubit.dart';
-import 'package:the_quote/features/email_base_auth/presentation/errors/continue_with_email_error.dart';
 import 'package:the_quote/shared/presentation/widgets/common/divider_with_text.dart';
 import 'package:the_quote/shared/presentation/widgets/layout/default_page_padding.dart';
 import 'package:the_quote/shared/presentation/widgets/layout/spacers.dart';
@@ -50,7 +50,7 @@ class _Body extends StatelessWidget {
     return BlocConsumer<ContinueWithEmailCubit, ContinueWithEmailState>(
       listener: (context, state) {
         if (state.error != null) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.error!.toLocaleKey.tr())));
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.error!.toLocale)));
         }
         if (state.success) {
           context.read<AuthCubit>().setSignIn();

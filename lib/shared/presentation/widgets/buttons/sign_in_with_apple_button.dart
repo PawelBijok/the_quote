@@ -9,7 +9,7 @@ import 'package:the_quote/shared/presentation/widgets/layout/spacers.dart';
 class SignInWithAppleButton extends StatelessWidget {
   const SignInWithAppleButton({required this.onPressed, super.key});
 
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class SignInWithAppleButton extends StatelessWidget {
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.resolveWith((states) => isLight ? Colors.black : Colors.white),
       ),
-      onPressed: () {},
+      onPressed: onPressed,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

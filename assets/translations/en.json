@@ -1,4 +1,5 @@
 {
+  "authProviderSignInFailed": "Signing in with {authProvider} failed",
   "addCollectionImage": "Add collection image",
   "addFirstQuote": "Add first quote",
   "addNewCollection": "Add new collection",

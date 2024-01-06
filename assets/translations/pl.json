@@ -1,4 +1,5 @@
 {
+  "authProviderSignInFailed": "Logowanie za pomocą {authProvider} nie powiodło się",
   "addCollectionImage": "Dodaj obraz kolekcji",
   "addFirstQuote": "Dodaj pierwszy cytat",
   "addNewCollection": "Dodaj kolekcję",

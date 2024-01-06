@@ -6,7 +6,6 @@ import 'package:the_quote/core/validators/text/text_validation_option.dart';
 import 'package:the_quote/core/validators/text/text_validators.dart';
 import 'package:the_quote/features/auth/domain/failures/auth_failure.dart';
 import 'package:the_quote/features/auth/domain/repositories/auth_repository.dart';
-import 'package:the_quote/features/email_base_auth/presentation/errors/continue_with_email_error.dart';
 
 part 'continue_with_email_cubit.freezed.dart';
 part 'continue_with_email_form_validation.dart';
@@ -116,13 +115,7 @@ class ContinueWithEmailCubit extends Cubit<ContinueWithEmailState> {
   }
 
   void _handleAuthFailure(AuthFailure failure) {
-    final error = switch (failure) {
-      EmailAlreadyExistsFailure() => ContinueWithEmailError.userAlreadyExists,
-      InvalidCredentialsFailure() => ContinueWithEmailError.invalidCredentials,
-      NoInternetConnectionFailure() => ContinueWithEmailError.noInternet,
-      UnknownFailure() => ContinueWithEmailError.unexpected,
-    };
-    emit(state.copyWith(error: error));
+    emit(state.copyWith(error: failure));
     emit(state.copyWith(error: null));
   }
 

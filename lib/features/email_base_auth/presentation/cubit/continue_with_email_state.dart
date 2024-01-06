@@ -10,7 +10,7 @@ class ContinueWithEmailState with _$ContinueWithEmailState {
     @Default(false) bool isLoading,
     @Default(false) bool showFormErrors,
     ContinueWithEmailFormValidation? formValidation,
-    ContinueWithEmailError? error,
+    AuthFailure? error,
     @Default(false) bool success,
   }) = _ContinueWithEmailState;
 }

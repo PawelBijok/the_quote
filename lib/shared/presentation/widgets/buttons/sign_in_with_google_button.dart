@@ -9,7 +9,7 @@ import 'package:the_quote/shared/presentation/widgets/layout/spacers.dart';
 class SignInWithGoogleButton extends StatelessWidget {
   const SignInWithGoogleButton({required this.onPressed, super.key});
 
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class SignInWithGoogleButton extends StatelessWidget {
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.resolveWith((states) => Colors.white),
       ),
-      onPressed: () {},
+      onPressed: onPressed,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
