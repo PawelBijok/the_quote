@@ -17,35 +17,36 @@ class SearchPage extends StatelessWidget {
       create: (context) => getIt<SearchCubit>()..init(),
       child: BlocBuilder<SearchCubit, SearchState>(
         builder: (context, state) {
-          return DefaultPagePadding(
-            child: Column(
-              children: [
-                Spacers.xl,
-                TextField(
-                  decoration: InputDecoration(
-                    label: Text(LocaleKeys.searchQuote.tr()),
-                    border: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10),
+          return SafeArea(
+            child: DefaultPagePadding(
+              child: Column(
+                children: [
+                  TextField(
+                    decoration: InputDecoration(
+                      label: Text(LocaleKeys.searchQuote.tr()),
+                      border: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
                       ),
                     ),
+                    onChanged: context.read<SearchCubit>().onPromptChanged,
                   ),
-                  onChanged: context.read<SearchCubit>().onPromptChanged,
-                ),
-                Spacers.l,
-                Expanded(
-                  child: ListView.builder(
-                    itemBuilder: (context, index) {
-                      final item = state.quotes[index];
-                      return QuoteListTile(
-                        quote: item,
-                        collectionId: item.collectionId,
-                      );
-                    },
-                    itemCount: state.quotes.length,
+                  Spacers.l,
+                  Expanded(
+                    child: ListView.builder(
+                      itemBuilder: (context, index) {
+                        final item = state.quotes[index];
+                        return QuoteListTile(
+                          quote: item,
+                          collectionId: item.collectionId,
+                        );
+                      },
+                      itemCount: state.quotes.length,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },
