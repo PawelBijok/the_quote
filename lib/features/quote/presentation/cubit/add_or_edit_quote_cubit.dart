@@ -49,10 +49,10 @@ class AddOrEditQuoteCubit extends Cubit<AddOrEditQuoteState> {
     emit(state.copyWith(content: reducedTexts, refreshInputKey: '${reducedTexts.hashCode}'));
   }
 
-  Future<void> getFromImage() async {
+  Future<void> getFromImage({bool isCameraSource = false}) async {
     var id = 0;
     final imagePicker = ImagePicker();
-    final image = await imagePicker.pickImage(source: ImageSource.gallery);
+    final image = await imagePicker.pickImage(source: isCameraSource ? ImageSource.camera : ImageSource.gallery);
     if (image == null) return;
     final file = image.path;
     final inputImage = InputImage.fromFilePath(file);

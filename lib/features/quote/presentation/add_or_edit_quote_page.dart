@@ -146,9 +146,11 @@ class _AddOrEditQuotePageState extends State<AddOrEditQuotePage> {
                                 heroTag: null,
                                 child: const Icon(Icons.image),
                               ),
-                              const FloatingActionButton(
+                              FloatingActionButton(
                                 heroTag: null,
-                                onPressed: null,
+                                onPressed: () {
+                                  context.read<AddOrEditQuoteCubit>().getFromImage(isCameraSource: true);
+                                },
                                 child: Icon(Icons.camera_alt),
                               ),
                             ],
