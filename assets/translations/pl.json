@@ -1,15 +1,16 @@
 {
-  "authProviderSignInFailed": "Logowanie za pomocą {authProvider} nie powiodło się",
   "addCollectionImage": "Dodaj obraz kolekcji",
   "addFirstQuote": "Dodaj pierwszy cytat",
   "addNewCollection": "Dodaj kolekcję",
   "addNewQuote": "Dodaj nowy cytat",
+  "addYourFirstCollection": "Dodaj swoją\npierwszą kolekcję",
   "aiWillFindAnyTextInThePhoto": "Sztuczna inteligencja znajdzie tekst na zdjęciu",
   "alreadyHaveAnAccount": "Masz już konto?",
   "appName": "The Quote",
   "appSlogan": "Twój prywatny skarbiec cytatów",
   "appThemeMode": "Tryb motywu aplikacji",
   "areYouSureYouWantToDeleteCollection": "Czy na pewno chcesz usunąć kolekcję: {collection}",
+  "authProviderSignInFailed": "Logowanie za pomocą {authProvider} nie powiodło się",
   "cancel": "Anuluj",
   "collectionDescription": "Opis kolekcji",
   "collections": "Kolekcje",
@@ -48,6 +49,8 @@
   "save": "Zapisz",
   "search": "Szukaj",
   "searchQuote": "Szukaj cytatu",
+  "selectElementsThatYouWantToAppend": "Wybierz elementy cytatu które chcesz dodać",
+  "selectPartOfTheTextYouWantToInclude": "Zaznacz część cytatu którą chcesz dodać",
   "settings": "Ustawienia",
   "showMenu": "Pokaż menu",
   "signIn": "Zaloguj się",
@@ -59,8 +62,6 @@
   "thisCollectionContains": "Ta kolekcja posiada następującą ilość cytatów: {quotes}",
   "thisFieldIsRequired": "To pole jest wymagane",
   "welcomeBack": "Witaj ponownie",
-  "youDontHaveAnyQuotesYet": "Nie masz jeszcze żadnych cytatów",
-
-  "selectElementsThatYouWantToAppend": "Wybierz elementy cytatu które chcesz dodać",
-  "selectPartOfTheTextYouWantToInclude": "Zaznacz część cytatu którą chcesz dodać"
+  "youDoNotHaveANyCollectionsYet": "Nie masz jeszcze żadnych kolekcji",
+  "youDontHaveAnyQuotesYet": "Nie masz jeszcze żadnych cytatów"
 }

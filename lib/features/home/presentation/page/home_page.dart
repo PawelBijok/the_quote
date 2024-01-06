@@ -11,6 +11,7 @@ import 'package:the_quote/core/l10n/locale_keys.g.dart';
 import 'package:the_quote/core/router/routes.dart';
 import 'package:the_quote/features/collection/presentation/widgets/collection_list_tile.dart';
 import 'package:the_quote/features/home/presentation/page/cubit/home_cubit.dart';
+import 'package:the_quote/features/home/presentation/widgets/no_collections_info.dart';
 import 'package:the_quote/shared/presentation/widgets/common/header_with_button_and_divider.dart';
 import 'package:the_quote/shared/presentation/widgets/layout/default_page_padding.dart';
 import 'package:the_quote/shared/presentation/widgets/layout/spacers.dart';
@@ -73,6 +74,7 @@ class HomePage extends StatelessWidget {
                             onPressed: () => context.push(Routes.addOrEditCollection),
                             icon: Icons.add,
                           ),
+                          if (collections.isEmpty) const NoCollectionsInfo(),
                           ...collections.map(
                             (c) => Column(
                               children: [

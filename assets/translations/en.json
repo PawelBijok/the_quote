@@ -1,15 +1,16 @@
 {
-  "authProviderSignInFailed": "Signing in with {authProvider} failed",
   "addCollectionImage": "Add collection image",
   "addFirstQuote": "Add first quote",
   "addNewCollection": "Add new collection",
   "addNewQuote": "Add new quote",
+  "addYourFirstCollection": "Add your\nfirst collection",
   "aiWillFindAnyTextInThePhoto": "AI will find any text in the photo",
   "alreadyHaveAnAccount": "Already have an account?",
   "appName": "The Quote",
   "appSlogan": "Your digital quote vault",
   "appThemeMode": "App theme mode",
   "areYouSureYouWantToDeleteCollection": "Are you sure you want to delete collection: {collection}",
+  "authProviderSignInFailed": "Signing in with {authProvider} failed",
   "cancel": "Cancel",
   "collectionDescription": "Collection description",
   "collections": "Collections",
@@ -48,6 +49,8 @@
   "save": "Save",
   "search": "Search",
   "searchQuote": "Search quote",
+  "selectElementsThatYouWantToAppend": "Select elements that you want to append",
+  "selectPartOfTheTextYouWantToInclude": "Select part of the text you want to include",
   "settings": "Settings",
   "showMenu": "Show menu",
   "signIn": "Sign in",
@@ -59,7 +62,6 @@
   "thisCollectionContains": "This collection contains following number of quotes: {quotes}",
   "thisFieldIsRequired": "This field is required",
   "welcomeBack": "Welcome back",
-  "youDontHaveAnyQuotesYet": "You don't have any quotes yet",
-  "selectElementsThatYouWantToAppend": "Select elements that you want to append",
-  "selectPartOfTheTextYouWantToInclude": "Select part of the text you want to include"
+  "youDoNotHaveANyCollectionsYet": "You don't have any collections yet",
+  "youDontHaveAnyQuotesYet": "You don't have any quotes yet"
 }
