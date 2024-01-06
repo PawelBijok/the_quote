@@ -76,7 +76,9 @@ class CollectionRepositoryImpl implements CollectionRepository {
           .where('collectionId', isEqualTo: id)
           .get();
       final quantity = quotes.docs.length;
-      quotes.docs.forEach((element) => element.reference.delete());
+      for (final quote in quotes.docs) {
+        await quote.reference.delete();
+      }
       await _updateQuotesQuantityAfterDeletion(quantity: quantity);
       return const Right(null);
     } on SocketException catch (e, st) {

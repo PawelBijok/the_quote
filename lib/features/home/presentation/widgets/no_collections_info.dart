@@ -23,16 +23,16 @@ class NoCollectionsInfoState extends State<NoCollectionsInfo> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Row(
-            mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Expanded(
-                  child: Text(
-                LocaleKeys.addYourFirstCollection.tr(),
-                style: context.textTheme.titleMedium?.copyWith(fontFamily: Fonts.sourceSerifPro),
-                textAlign: TextAlign.right,
-              )),
+                child: Text(
+                  LocaleKeys.addYourFirstCollection.tr(),
+                  style: context.textTheme.titleMedium?.copyWith(fontFamily: Fonts.sourceSerifPro),
+                  textAlign: TextAlign.right,
+                ),
+              ),
               Align(
                 alignment: Alignment.topRight,
                 child: Padding(

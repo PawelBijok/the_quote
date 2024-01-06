@@ -151,7 +151,7 @@ class _AddOrEditQuotePageState extends State<AddOrEditQuotePage> {
                                 onPressed: () {
                                   context.read<AddOrEditQuoteCubit>().getFromImage(isCameraSource: true);
                                 },
-                                child: Icon(Icons.camera_alt),
+                                child: const Icon(Icons.camera_alt),
                               ),
                             ],
                           ),
