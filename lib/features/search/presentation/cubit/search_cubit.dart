@@ -46,4 +46,10 @@ class SearchCubit extends Cubit<SearchState> {
     }
     emit(state.copyWith(quotes: _quotes!.where((element) => element.content.contains(prompt)).toList()));
   }
+
+  Future<void> deleteQuote({required String quoteId, required String parentCollectionId}) async {
+    await _quoteRepository.deleteQuote(parentCollectionId, quoteId);
+    emit(state.copyWith(quotes: state.quotes.where((quote) => quote.id != quoteId).toList()));
+    _quotes = _quotes?.where((quote) => quote.id != quoteId).toList();
+  }
 }

@@ -9,13 +9,17 @@ import 'package:the_quote/core/router/dtos/add_or_edit_quote_route_dto.dart';
 import 'package:the_quote/core/router/routes.dart';
 import 'package:the_quote/features/collection/presentation/pages/collection/cubit/collection_cubit.dart';
 import 'package:the_quote/features/quote/domain/models/quote_model.dart';
+import 'package:the_quote/features/search/presentation/cubit/search_cubit.dart';
 import 'package:the_quote/shared/presentation/widgets/layout/spacers.dart';
 
+enum QuoteListTileUsage { collection, search }
+
 class QuoteListTile extends StatelessWidget {
-  const QuoteListTile({required this.quote, required this.collectionId, super.key});
+  const QuoteListTile({required this.quote, required this.collectionId, required this.usage, super.key});
 
   final QuoteModel quote;
   final String collectionId;
+  final QuoteListTileUsage usage;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +53,12 @@ class QuoteListTile extends StatelessWidget {
         },
         menuChildren: [
           MenuItemButton(
-            onPressed: () => context.read<CollectionCubit>().deleteQuote(quote.id),
+            onPressed: () => usage == QuoteListTileUsage.collection
+                ? context.read<CollectionCubit>().deleteQuote(quote.id)
+                : context.read<SearchCubit>().deleteQuote(
+                      quoteId: quote.id,
+                      parentCollectionId: quote.collectionId,
+                    ),
             child: Row(
               children: [
                 const Icon(

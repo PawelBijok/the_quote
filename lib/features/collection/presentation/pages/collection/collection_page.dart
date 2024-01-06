@@ -128,6 +128,7 @@ class CollectionPage extends StatelessWidget {
                           (quote) => QuoteListTile(
                             quote: quote,
                             collectionId: id,
+                            usage: QuoteListTileUsage.collection,
                           ),
                         ),
                       ],

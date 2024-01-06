@@ -44,6 +44,7 @@ class SearchPage extends StatelessWidget {
                           return QuoteListTile(
                             quote: item,
                             collectionId: item.collectionId,
+                            usage: QuoteListTileUsage.search,
                           );
                         },
                         itemCount: state.quotes.length,

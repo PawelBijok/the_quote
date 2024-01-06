@@ -15,35 +15,37 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return KeyboardVisibilityProvider(
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) => getIt<AuthCubit>()..tryAutoLogin(),
+    return KeyboardDismissOnTap(
+      child: KeyboardVisibilityProvider(
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => getIt<AuthCubit>()..tryAutoLogin(),
+            ),
+            BlocProvider(
+              create: (context) => getIt<SettingsCubit>()..init(),
+            ),
+          ],
+          child: BlocConsumer<SettingsCubit, SettingsState>(
+            listener: (context, state) {
+              SystemChrome.setSystemUIOverlayStyle(
+                SystemUiOverlayStyle.dark.copyWith(
+                  statusBarBrightness: state.themeMode.brightness,
+                ),
+              );
+            },
+            builder: (context, settingsState) {
+              return MaterialApp.router(
+                localizationsDelegates: context.localizationDelegates,
+                supportedLocales: context.supportedLocales,
+                locale: context.locale,
+                theme: Themes.lightTheme,
+                themeMode: settingsState.themeMode,
+                darkTheme: Themes.darkTheme,
+                routerConfig: router,
+              );
+            },
           ),
-          BlocProvider(
-            create: (context) => getIt<SettingsCubit>()..init(),
-          ),
-        ],
-        child: BlocConsumer<SettingsCubit, SettingsState>(
-          listener: (context, state) {
-            SystemChrome.setSystemUIOverlayStyle(
-              SystemUiOverlayStyle.dark.copyWith(
-                statusBarBrightness: state.themeMode.brightness,
-              ),
-            );
-          },
-          builder: (context, settingsState) {
-            return MaterialApp.router(
-              localizationsDelegates: context.localizationDelegates,
-              supportedLocales: context.supportedLocales,
-              locale: context.locale,
-              theme: Themes.lightTheme,
-              themeMode: settingsState.themeMode,
-              darkTheme: Themes.darkTheme,
-              routerConfig: router,
-            );
-          },
         ),
       ),
     );
