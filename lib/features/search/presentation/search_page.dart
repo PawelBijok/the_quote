@@ -5,6 +5,7 @@ import 'package:the_quote/core/injectable/injectable.dart';
 import 'package:the_quote/core/l10n/locale_keys.g.dart';
 import 'package:the_quote/features/collection/presentation/widgets/quote_list_tile.dart';
 import 'package:the_quote/features/search/presentation/cubit/search_cubit.dart';
+import 'package:the_quote/features/search/presentation/widgets/no_serach_results_info.dart';
 import 'package:the_quote/shared/presentation/widgets/layout/default_page_padding.dart';
 import 'package:the_quote/shared/presentation/widgets/layout/spacers.dart';
 
@@ -33,18 +34,21 @@ class SearchPage extends StatelessWidget {
                     onChanged: context.read<SearchCubit>().onPromptChanged,
                   ),
                   Spacers.l,
-                  Expanded(
-                    child: ListView.builder(
-                      itemBuilder: (context, index) {
-                        final item = state.quotes[index];
-                        return QuoteListTile(
-                          quote: item,
-                          collectionId: item.collectionId,
-                        );
-                      },
-                      itemCount: state.quotes.length,
+                  if (state.quotes.isEmpty)
+                    const Expanded(child: NoSerachResultsInfo())
+                  else
+                    Expanded(
+                      child: ListView.builder(
+                        itemBuilder: (context, index) {
+                          final item = state.quotes[index];
+                          return QuoteListTile(
+                            quote: item,
+                            collectionId: item.collectionId,
+                          );
+                        },
+                        itemCount: state.quotes.length,
+                      ),
                     ),
-                  ),
                 ],
               ),
             ),

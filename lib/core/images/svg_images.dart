@@ -6,4 +6,5 @@ abstract class SvgImages {
   static const arrowTopRight = 'assets/vectors/arrow_top_right.svg';
   static const quotes = 'assets/vectors/quotes.svg';
   static const marksWind = 'assets/vectors/marks_wind.svg';
+  static const noSearchResults = 'assets/vectors/no_search_results.svg';
 }
