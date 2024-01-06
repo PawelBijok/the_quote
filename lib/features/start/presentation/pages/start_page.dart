@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:the_quote/core/config/feature_flags.dart';
 import 'package:the_quote/core/extensions/extensions.dart';
 import 'package:the_quote/core/fonts/fonts.dart';
 import 'package:the_quote/core/images/svg_images.dart';
@@ -151,7 +152,7 @@ class _BodyState extends State<_Body> with SingleTickerProviderStateMixin {
                             ),
                           ),
                           Spacers.m,
-                          if (Platform.isIOS)
+                          if (Platform.isIOS && FeatureFlags.signInWithApple)
                             SizedBox(
                               width: double.infinity,
                               child: SignInWithAppleButton(
