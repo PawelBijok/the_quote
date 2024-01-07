@@ -69,6 +69,13 @@ class _BodyState extends State<_Body> with SingleTickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    controller.dispose();
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocConsumer<StartCubit, StartState>(
       listener: (context, state) {
